@@ -1,14 +1,16 @@
 .headerOption {
 	display: flex;
-	flex-direction: column;
+
 	align-items: center;
 
 	margin-right: 20px;
 	color: #636363;
 	cursor: pointer;
+	padding-bottom: 5px;
 }
 .headerOption__title {
 	font-size: 12px;
+	padding-left: 10px;
 }
 
 .headerOption__icon {
@@ -18,4 +20,5 @@
 }
 .headerOption:hover {
 	color: #121212;
+	border-bottom: #1e8ebb solid 2px;
 }
