@@ -26,11 +26,13 @@ function Sidebar() {
 					src='https://media-exp1.licdn.com/dms/image/C4E03AQHRjLPA2E9-Gg/profile-displayphoto-shrink_400_400/0/1616477273357?e=1635379200&v=beta&t=uyHlw8T8hcTuHBfRKVe1aYnxIg_eQMAvikk8_UqglZY'
 					className='sidebar__avatar'
 				/>
-				<h2>Deepanshu Goel</h2>
-				<h4>
-					UI/UX Designer .Full-Stack Developer .Open Source at @CodeForCause
-					.Webmaster IEEE .Campus Ambassador @Gemini Solutions
-				</h4>
+				<div className='sidebar__designations'>
+					<h2>Deepanshu Goel</h2>
+					<h5>
+						UI/UX Designer .Full-Stack Developer .Open Source at @CodeForCause
+						.Webmaster IEEE .Campus Ambassador @Gemini Solutions
+					</h5>
+				</div>
 			</div>
 			<div className='sidebar__stats'>
 				<div className='sidebar__stat'>

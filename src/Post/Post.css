@@ -1,0 +1,34 @@
+.post {
+	background-color: white;
+}
+.post__profileSection {
+	padding: 0 20px;
+	padding-top: 20px;
+	display: flex;
+
+	margin-bottom: 10px;
+	border-radius: 10px;
+}
+
+.profileSection__details {
+	margin-left: 10px;
+}
+.profileSection__details > p {
+	font-size: 12px;
+	color: gray;
+}
+.post__messageSection {
+	margin-top: 20px;
+}
+.post__messageSection > p {
+	padding: 0 20px;
+	font-size: 14px;
+}
+.post__messageSection > img {
+	margin-top: 20px;
+	width: 100%;
+	height: auto;
+	max-height: 250px;
+
+	object-fit: cover;
+}
