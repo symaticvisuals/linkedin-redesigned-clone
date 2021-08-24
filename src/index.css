@@ -1,9 +1,10 @@
 * {
 	margin: 0;
+	font-family: "Work Sans", sans-serif;
 }
 body {
 	margin: 0;
-	font-family: "Urbanist", sans-serif;
+
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
 }

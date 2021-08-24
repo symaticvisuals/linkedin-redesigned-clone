@@ -1,6 +1,6 @@
 import React from "react";
 import "./Header.css";
-import logo from "../src/images/logo.png";
+import logo from "../images/logo.png";
 import HomeRoundedIcon from "@material-ui/icons/HomeRounded";
 import PeopleRoundedIcon from "@material-ui/icons/PeopleRounded";
 import WorkRoundedIcon from "@material-ui/icons/WorkRounded";
@@ -8,7 +8,7 @@ import NotificationsRoundedIcon from "@material-ui/icons/NotificationsRounded";
 import SearchOutlinedIcon from "@material-ui/icons/SearchOutlined";
 import ChatRoundedIcon from "@material-ui/icons/ChatRounded";
 
-import HeaderOption from "./HeaderOption";
+import HeaderOption from "../HeaderOption/HeaderOption";
 function Header() {
 	return (
 		<div className='header'>

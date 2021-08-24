@@ -1,6 +1,6 @@
 .sidebar {
 	position: sticky;
-	top: 80;
+	top: -170px;
 	flex: 0.2;
 	border-radius: 10px;
 	text-align: center;
@@ -11,13 +11,17 @@
 .sidebar__avatar {
 	margin-bottom: 10px;
 }
-
-.sidebar__top > h4 {
+.sidebar__designations {
+	padding: 0 10px;
+}
+.sidebar__designations > h5 {
+	margin-top: 5px;
 	color: gray;
 	font-size: 12px;
+	font-weight: 500;
 }
 
-.sidebar__top > h2 {
+.sidebar__designations > h2 {
 	font-size: 18px;
 }
 
@@ -40,7 +44,7 @@
 	height: 80px;
 	border-top-left-radius: 10px;
 	border-top-right-radius: 10px;
-	object-fit: cover;
+	object-fit: contain;
 }
 
 .sidebar__stat {
@@ -56,7 +60,7 @@
 }
 
 .sidebar__stats {
-	padding: 10px;
+	padding: 10px 20px;
 	margin-bottom: 10px;
 	/* border-bottom: 1px solid lightgray; */
 	border-bottom-left-radius: 10px;
