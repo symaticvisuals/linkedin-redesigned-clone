@@ -22,6 +22,7 @@
 
 .feed__input > form {
 	display: flex;
+	flex-direction: column;
 	width: 100%;
 	min-height: 100px;
 }
@@ -31,8 +32,11 @@
 	color: lightgray;
 	opacity: 1; /* Firefox */
 }
-
-.feed__input > form > textarea {
+.feed__writeArea {
+	display: flex;
+	align-items: flex-start;
+}
+.feed__writeArea > textarea {
 	border: none;
 	flex: 1;
 	margin-left: 10px;
@@ -40,7 +44,7 @@
 	font-weight: 500;
 	display: block;
 	font-size: 15px;
-
+	height: 100px;
 	resize: none;
 	overflow: visible;
 }

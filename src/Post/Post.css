@@ -1,13 +1,17 @@
 .post {
 	background-color: white;
+	border-radius: 10px;
+	margin-bottom: 20px;
 }
 .post__profileSection {
-	padding: 0 20px;
+	padding: 0 10px;
+	padding-bottom: 10px;
 	padding-top: 20px;
 	display: flex;
 
 	margin-bottom: 10px;
 	border-radius: 10px;
+	align-items: center;
 }
 
 .profileSection__details {
@@ -15,6 +19,7 @@
 }
 .profileSection__details > p {
 	font-size: 12px;
+	margin-top: 3px;
 	color: gray;
 }
 .post__messageSection {
@@ -24,6 +29,9 @@
 	padding: 0 20px;
 	font-size: 14px;
 }
+.post__like {
+	display: flex;
+}
 .post__messageSection > img {
 	margin-top: 20px;
 	width: 100%;
@@ -31,4 +39,36 @@
 	max-height: 250px;
 
 	object-fit: cover;
+}
+.post__reviews {
+	display: flex;
+	padding: 10px 0;
+	padding: 10px;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.post__like > div > h4 {
+	font-size: 14px;
+}
+.like {
+	display: flex;
+	align-items: center;
+	padding: 0 10px;
+	color: #0080b4;
+}
+.like:hover,
+.comment:hover {
+	background-color: lightgrey;
+	border-radius: 10px;
+	cursor: pointer;
+}
+.comment {
+	display: flex;
+	align-items: center;
+	padding: 8px 20px;
+	color: #ff9800;
+}
+.save {
+	color: #f44336;
 }
