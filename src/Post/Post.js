@@ -18,7 +18,7 @@ function Post({ feedPost }) {
 			<div className='post__messageSection'>
 				<p>{feedPost.message}</p>
 				<img
-					src='https://media-exp1.licdn.com/dms/image/sync/C4D27AQHJZTxrWNGX8Q/articleshare-shrink_800/0/1628766691193?e=1629932400&v=beta&t=KCf8ueuPMttrhgh7NrO6RkJ6z2Vve-eYdZcbJRbnBlQ'
+					src='https://media-exp1.licdn.com/dms/image/C4E22AQFqVcEkBVId2w/feedshare-shrink_800/0/1628500307101?e=1632960000&v=beta&t=-pbstE2BiHV3hn-7_vL-w5EoelFG2zVikpxJxe0VecY'
 					alt='postImage'
 				></img>
 			</div>
