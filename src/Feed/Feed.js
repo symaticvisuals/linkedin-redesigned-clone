@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./Feed.css";
 import InsertPhotoRoundedIcon from "@material-ui/icons/InsertPhotoRounded";
 import MovieCreationRoundedIcon from "@material-ui/icons/MovieCreationRounded";
@@ -7,49 +7,45 @@ import AssignmentRoundedIcon from "@material-ui/icons/AssignmentRounded";
 import { Avatar, Divider } from "@material-ui/core";
 import InputOption from "../InputOption/InputOption";
 import Post from "../Post/Post";
+import { db } from "../firebase";
+import firebase from "firebase";
+
 function Feed() {
+	const [input, setInput] = React.useState("");
+	const [posts, setPosts] = React.useState([]);
+
+	useEffect(() => {
+		db.collection("posts")
+			.orderBy("timePosted", "desc")
+			.onSnapshot((snapshot) =>
+				setPosts(
+					snapshot.docs.map((doc) => ({
+						id: doc.id,
+						data: doc.data(),
+					}))
+				)
+			);
+	}, []);
+
 	const sendPost = (e) => {
 		e.preventDefault();
+		db.collection("posts").add({
+			name: "Deepanshu Goel",
+			designation:
+				"UI/UX Designer .Full-Stack Developer .Open Source at @CodeForCause .Webmaster IEEE .Campus Ambassador @Gemini Solutions",
+			timePosted: firebase.firestore.FieldValue.serverTimestamp(),
+			message: input,
+			profile:
+				"https://media-exp1.licdn.com/dms/image/C4E03AQHRjLPA2E9-Gg/profile-displayphoto-shrink_400_400/0/1616477273357?e=1635379200&v=beta&t=uyHlw8T8hcTuHBfRKVe1aYnxIg_eQMAvikk8_UqglZY",
+		});
+		setInput("");
 	};
-	const [posts, setPosts] = React.useState([]);
+
 	const options = [
 		{ Icon: InsertPhotoRoundedIcon, color: "#70B5F9", title: "Photo" },
 		{ Icon: MovieCreationRoundedIcon, color: "#FFC107", title: "Video" },
 		{ Icon: WorkRoundedIcon, color: "#F44336", title: "Job" },
 		{ Icon: AssignmentRoundedIcon, color: "#FF9800", title: "Write Article" },
-	];
-	const feedPost = [
-		{
-			name: "Deepanshu Goel",
-			designation:
-				"UI/UX Designer .Full-Stack Developer .Open Source at @CodeForCause .Webmaster IEEE .Campus Ambassador @Gemini Solutions",
-			timePosted: "6h",
-			profile:
-				"https://media-exp1.licdn.com/dms/image/C4E03AQHRjLPA2E9-Gg/profile-displayphoto-shrink_400_400/0/1616477273357?e=1635379200&v=beta&t=uyHlw8T8hcTuHBfRKVe1aYnxIg_eQMAvikk8_UqglZY",
-			message:
-				"Hey eveyone,I am working on 𝗟𝗶𝗻𝗸𝗲𝗱I𝗻 𝗥𝗲𝗱𝗲𝘀𝗶𝗴𝗻 𝗖𝗹𝗼𝗻𝗲 with React Js. It will be going live soon!! Let me know your views 𝗶𝗳 𝘆𝗼𝘂 𝗴𝗼𝘁 𝘁𝗵𝗲 𝗽𝗼𝘄𝗲𝗿𝘀 to redesign anything on LinkedIn what it would be. Comment down your views, I will be happy to implement them on my clone.",
-		},
-		{
-			name: "Deepanshu Goel",
-			designation:
-				"UI/UX Designer .Full-Stack Developer .Open Source at @CodeForCause .Webmaster IEEE .Campus Ambassador @Gemini Solutions",
-			timePosted: "6h",
-			profile:
-				"https://media-exp1.licdn.com/dms/image/C4E03AQHRjLPA2E9-Gg/profile-displayphoto-shrink_400_400/0/1616477273357?e=1635379200&v=beta&t=uyHlw8T8hcTuHBfRKVe1aYnxIg_eQMAvikk8_UqglZY",
-			message:
-				"Hey eveyone,I am working on 𝗟𝗶𝗻𝗸𝗲𝗱I𝗻 𝗥𝗲𝗱𝗲𝘀𝗶𝗴𝗻 𝗖𝗹𝗼𝗻𝗲 with React Js. It will be going live soon!! Let me know your views 𝗶𝗳 𝘆𝗼𝘂 𝗴𝗼𝘁 𝘁𝗵𝗲 𝗽𝗼𝘄𝗲𝗿𝘀 to redesign anything on LinkedIn what it would be. Comment down your views, I will be happy to implement them on my clone.",
-		},
-
-		{
-			name: "Deepanshu Goel",
-			designation:
-				"UI/UX Designer .Full-Stack Developer .Open Source at @CodeForCause .Webmaster IEEE .Campus Ambassador @Gemini Solutions",
-			timePosted: "6h",
-			profile:
-				"https://media-exp1.licdn.com/dms/image/C4E03AQHRjLPA2E9-Gg/profile-displayphoto-shrink_400_400/0/1616477273357?e=1635379200&v=beta&t=uyHlw8T8hcTuHBfRKVe1aYnxIg_eQMAvikk8_UqglZY",
-			message:
-				"Hey eveyone,I am working on 𝗟𝗶𝗻𝗸𝗲𝗱I𝗻 𝗥𝗲𝗱𝗲𝘀𝗶𝗴𝗻 𝗖𝗹𝗼𝗻𝗲 with React Js. It will be going live soon!! Let me know your views 𝗶𝗳 𝘆𝗼𝘂 𝗴𝗼𝘁 𝘁𝗵𝗲 𝗽𝗼𝘄𝗲𝗿𝘀 to redesign anything on LinkedIn what it would be. Comment down your views, I will be happy to implement them on my clone.",
-		},
 	];
 
 	return (
@@ -66,6 +62,8 @@ function Feed() {
 								placeholder='Share your thoughts...'
 								id=''
 								row='5'
+								value={input}
+								onChange={(e) => setInput(e.target.value)}
 							/>
 						</div>
 						<Divider />
@@ -78,7 +76,7 @@ function Feed() {
 									title={option.title}
 								/>
 							))}
-							<button type='submit' className='feed__button'>
+							<button type='submit' className='feed__button' onClick={sendPost}>
 								Publish
 							</button>
 						</div>
@@ -86,9 +84,21 @@ function Feed() {
 				</div>
 			</div>
 			<div className='feed_posts'>
-				{feedPost.map((post) => (
-					<Post feedPost={post} />
-				))}
+				{posts.map(
+					({
+						id,
+						data: { name, designation, message, profile, timePosted },
+					}) => (
+						<Post
+							key={id}
+							name={name}
+							designation={designation}
+							profile={profile}
+							message={message}
+							timePosted={timePosted}
+						/>
+					)
+				)}
 			</div>
 		</div>
 	);
