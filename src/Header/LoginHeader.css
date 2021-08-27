@@ -1,0 +1,37 @@
+.loginHeader {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding: 10px 0;
+	width: 100vw;
+	z-index: 999;
+	position: sticky;
+	top: 0;
+	background-color: white;
+}
+.loginHeader__left {
+	padding-left: 6vw;
+}
+.loginHeader__left > img {
+	object-fit: contain;
+	height: 60px;
+}
+.loginHeader__right {
+	padding-right: 6vw;
+}
+
+.loginHeader__button {
+	padding: 10px 20px;
+	border: none;
+	border-radius: 60px;
+	border: 2px solid #a7b1b4;
+	background-color: white;
+	color: #0080b4;
+	font-weight: 600;
+}
+.loginHeader__button:hover {
+	background-color: #c0e6f5;
+	border: 3px solid #0080b4;
+	padding: 9px 19px;
+	transition: all 0.2s ease-in-out;
+}
