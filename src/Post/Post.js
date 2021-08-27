@@ -4,21 +4,22 @@ import "./Post.css";
 import ThumbUpOutlinedIcon from "@material-ui/icons/ThumbUpOutlined";
 import SmsOutlinedIcon from "@material-ui/icons/SmsOutlined";
 import BookmarkBorderOutlinedIcon from "@material-ui/icons/BookmarkBorderOutlined";
-function Post({ feedPost }) {
+function Post({ name, designation, message, profile, timePosted }) {
 	return (
 		<div className='post'>
 			<div className='post__profileSection'>
-				<Avatar src={feedPost.profile} />
+				<Avatar src={profile} />
 				<div className='profileSection__details'>
-					<h5>{feedPost.name}</h5>
-					<p>{feedPost.designation}</p>
+					<h5>{name}</h5>
+					<p>{designation}</p>
 				</div>
 			</div>
 			<Divider />
 			<div className='post__messageSection'>
-				<p>{feedPost.message}</p>
+				<p>{message}</p>
+
 				<img
-					src='https://media-exp1.licdn.com/dms/image/sync/C4D27AQHJZTxrWNGX8Q/articleshare-shrink_800/0/1628766691193?e=1629932400&v=beta&t=KCf8ueuPMttrhgh7NrO6RkJ6z2Vve-eYdZcbJRbnBlQ'
+					src='https://www.nicepng.com/png/detail/20-203753_comic-boom-png-comic-book-boom-png.png'
 					alt='postImage'
 				></img>
 			</div>
