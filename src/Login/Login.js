@@ -29,10 +29,14 @@ function Login() {
 					</h3>
 					<div className='login__buttons'>
 						<div className='login__button'>
-							Check out source code at <a href='/login'>Github</a>
+							Check out source code at{" "}
+							<a href='https://github.com/symaticvisuals/linkedin-redesigned-clone'>
+								Github
+							</a>
 						</div>
 						<div className='login__button'>
-							Check out my <a href='/login'>Personal Portfolio</a>
+							Check out my{" "}
+							<a href='http://deepanshuweb.in/'>Personal Portfolio</a>
 						</div>
 					</div>
 					<div className='login__socials'>
