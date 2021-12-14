@@ -1,13 +1,26 @@
 import React from "react";
+import { useSelector } from "react-redux";
 import { Switch, Route } from "react-router-dom";
-import Login from "./Login/Login";
-import SignUp from "./SignInForm/SignUp";
+import HeroPage from "./Components/HeroPage/HeroPage";
+import Login from "./Components/LoginForm/Login";
+
+import Profile from "./Components/Profile/Profile";
+import SignUp from "./Components/SignUpForm/SignUp";
 function Routes() {
+	const loginStatus = useSelector((state) => state.user.isLoggedIn);
 	return (
 		<Switch>
-			<Route path='/' exact component={Login} />
-			<Route exact path='/login' component={SignUp} />
-            
+			{!loginStatus ? (
+				<div>
+					<Route path='/' exact component={HeroPage} />
+					<Route exact path='/login' component={Login} />
+					<Route exact path='/signup' component={SignUp} />
+				</div>
+			) : (
+				<div>
+					<Route path='/' exact component={Profile} />
+				</div>
+			)}
 		</Switch>
 	);
 }
