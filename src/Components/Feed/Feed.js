@@ -7,7 +7,7 @@ import AssignmentRoundedIcon from "@material-ui/icons/AssignmentRounded";
 import { Avatar, Divider } from "@material-ui/core";
 import InputOption from "../InputOption/InputOption";
 import Post from "../Post/Post";
-import { db } from "../firebase";
+import { db } from "../../firebase";
 import firebase from "firebase";
 
 function Feed() {

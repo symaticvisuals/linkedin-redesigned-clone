@@ -1,12 +1,12 @@
 import React from "react";
-import "./Login.css";
-import loginAnimation from "../utils/loginAnimation.json";
+import "./HeroPage.css";
+import loginAnimation from "../../utils/loginAnimation.json";
 import Lottie from "react-lottie";
 import LinkedInIcon from "@material-ui/icons/LinkedIn";
 import TwitterIcon from "@material-ui/icons/Twitter";
 import GitHubIcon from "@material-ui/icons/GitHub";
-import Header from "../Header/Header";
-function Login() {
+
+function HeroPage() {
 	const defaultOptions = {
 		loop: true,
 		autoplay: true,
@@ -16,10 +16,9 @@ function Login() {
 		},
 	};
 	return (
-		<div>
-			<Header />
-			<div className='login'>
-				<div className='login__left'>
+		<div className='hero__main'>
+			<div className='hero'>
+				<div className='hero__left'>
 					<h1>
 						Welcome to <br />
 						Linkedin Clone
@@ -27,15 +26,19 @@ function Login() {
 					<h3>
 						Developed by <b>Deepanshu Goel</b>
 					</h3>
-					<div className='login__buttons'>
-						<div className='login__button'>
-							Check out source code at <a href='/login'>Github</a>
+					<div className='hero__buttons'>
+						<div className='hero__button'>
+							Check out source code at{" "}
+							<a href='https://github.com/symaticvisuals/linkedin-redesigned-clone'>
+								Github
+							</a>
 						</div>
-						<div className='login__button'>
-							Check out my <a href='/login'>Personal Portfolio</a>
+						<div className='hero__button'>
+							Check out my{" "}
+							<a href='http://deepanshuweb.in/'>Personal Portfolio</a>
 						</div>
 					</div>
-					<div className='login__socials'>
+					<div className='hero__socials'>
 						<a href='https://www.linkedin.com/in/deepanshu-goel-053594126/'>
 							<LinkedInIcon className='social' />
 						</a>
@@ -47,7 +50,7 @@ function Login() {
 						</a>
 					</div>
 				</div>
-				<div className='login__right'>
+				<div className='hero__right'>
 					<Lottie options={defaultOptions} width={400} height={400} />
 				</div>
 			</div>
@@ -55,4 +58,4 @@ function Login() {
 	);
 }
 
-export default Login;
+export default HeroPage;

@@ -1,44 +1,47 @@
-.login {
+.hero__main {
+	width: 100vw;
+}
+.hero {
 	background-color: white;
-	width: 100%;
+
 	display: flex;
 	align-items: center;
 	justify-content: space-around;
 	min-height: 80vh;
 }
-.login__left > h1 {
+.hero__left > h1 {
 	font-size: 3em;
 	font-weight: 400;
 	color: #0080b4;
 }
-.login__left > h3 {
+.hero__left > h3 {
 	margin-top: 10px;
 	padding-left: 4px;
 	font-weight: 400;
 	font-size: 1.2rem;
 }
-.login__buttons {
+.hero__buttons {
 	margin-top: 20px;
 }
-.login__button {
+.hero__button {
 	padding: 10px 20px;
 	border: 2px solid #0080b4;
 	border-radius: 60px;
 	margin-top: 10px;
 	text-align: center;
 }
-.login__button > a {
+.hero__button > a {
 	text-decoration: none;
 	color: #0080b4;
 	font-weight: 500;
 }
-.login__button:hover {
+.hero__button:hover {
 	background-color: #c0e6f5;
 	border: 3px solid #0080b4;
 	padding: 9px 19px;
 	transition: all 0.2s ease-in-out;
 }
-.login__socials {
+.hero__socials {
 	display: flex;
 	align-items: flex-start;
 	padding: 20px 10px;
