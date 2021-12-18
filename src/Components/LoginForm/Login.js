@@ -15,19 +15,16 @@ function Login() {
 		// dispatch(getUser());
 		axios({
 			method: "post",
-			url: "http://localhost:3001/api/user/login",
+			url: "https://linkedin-redesigned-server.herokuapp.com/api/user/login",
 			data: {
 				email: `${loginUser.email}`,
 				password: `${loginUser.password}`,
 			},
 		})
 			.then((res) => {
-				console.log(res);
-				// if (res.data.success === true) {
-				// 	alert("Registration Successful");
-				// } else {
-				// 	alert("Invalid Credentials");
-				// }
+				console.log(res.data.data.user);
+				dispatch(getUser(res.data.data.user));
+				dispatch();
 			})
 			.catch((err) => {
 				console.log(err);

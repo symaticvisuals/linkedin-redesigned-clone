@@ -4,7 +4,7 @@ import logo from "../../images/logo.png";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import { useDispatch } from "react-redux";
-import { login, register } from "../../features/userSlice";
+import { getUser, login, register } from "../../features/userSlice";
 
 function SignUp() {
 	const [registerUser, setRegister] = useState({});
@@ -29,11 +29,6 @@ function SignUp() {
 		})
 			.then((res) => {
 				console.log(res);
-				// if (res.data.success === true) {
-				// 	alert("Registration Successful");
-				// } else {
-				// 	alert("Invalid Credentials");
-				// }
 			})
 			.catch((err) => {
 				console.log(err);
@@ -45,12 +40,6 @@ function SignUp() {
 	return (
 		<div style={{ width: "100%" }}>
 			<div className='signup'>
-				{/* <div className='signup__logo'>
-					<Link to='/'>
-						<img src={logo} alt='' className='signup__brand' />
-					</Link>
-					<h1>Make most of your Professional Life</h1>
-				</div> */}
 				<div className='signup__form'>
 					<form action=''>
 						<label htmlFor='name'>First Name</label>
