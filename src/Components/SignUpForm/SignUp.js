@@ -12,17 +12,19 @@ function SignUp() {
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
+		console.log(registerUser);
 		axios({
 			method: "post",
-			url: "https://linkedin-redesigned-server.herokuapp.com/api/user/register",
+			url: "http://localhost:3001/api/user/register",
+
 			data: {
 				email: `${registerUser.email}`,
-				firstName: `${register.fname}`,
-				lastName: `${register.lname}`,
+				firstName: `${registerUser.fname}`,
+				lastName: `${registerUser.lname}`,
 				designation: "student",
 				education: "bachelor",
-				userName: `${register.username}`,
-				password: `${register.password}`,
+				userName: `${registerUser.username}`,
+				password: `${registerUser.password}`,
 			},
 		})
 			.then((res) => {

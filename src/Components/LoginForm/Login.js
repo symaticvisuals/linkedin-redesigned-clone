@@ -15,7 +15,7 @@ function Login() {
 		// dispatch(getUser());
 		axios({
 			method: "post",
-			url: "https://linkedin-redesigned-server.herokuapp.com/api/user/login",
+			url: "http://localhost:3001/api/user/login",
 			data: {
 				email: `${loginUser.email}`,
 				password: `${loginUser.password}`,
