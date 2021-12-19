@@ -1,35 +1,38 @@
 import React, { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { getUser, login } from "../../features/userSlice";
 import logo from "../../images/logo.png";
 import "./Login.css";
-import axios from "axios";
+import instance from "../../utils/axios";
+
+import Cookies from "js-cookie";
 function Login() {
 	const [loginUser, setLogin] = useState({});
 	const dispatch = useDispatch();
-
+	const loginDetails = useSelector((state) => state.user.login);
 	const handleSubmit = (e) => {
 		e.preventDefault();
 		console.log(loginUser);
 		// dispatch(getUser());
-		axios({
+		instance({
 			method: "post",
-			url: "https://linkedin-redesigned-server.herokuapp.com/api/user/login",
+			url: "api/user/login",
 			data: {
 				email: `${loginUser.email}`,
 				password: `${loginUser.password}`,
 			},
 		})
 			.then((res) => {
-				console.log(res.data.data.user);
 				dispatch(getUser(res.data.data.user));
-				dispatch();
+				dispatch(login({ userJwt: res.data.data.jwt, isLoggedIn: true }));
+				Cookies.set("access_token", res.data.data.jwt);
+
+				console.log(loginDetails);
 			})
 			.catch((err) => {
 				console.log(err);
 			});
-		dispatch(login({ isLoggedIn: true }));
 	};
 
 	return (
@@ -67,7 +70,7 @@ function Login() {
 							}
 						/>
 
-						<button onClick={handleSubmit}>Sign Up</button>
+						<button onClick={handleSubmit}>Sign In</button>
 					</form>
 					<p>Don't have a Account?</p>
 					<span>

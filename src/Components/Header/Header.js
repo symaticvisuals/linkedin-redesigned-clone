@@ -8,19 +8,42 @@ import WorkRoundedIcon from "@material-ui/icons/WorkRounded";
 import NotificationsRoundedIcon from "@material-ui/icons/NotificationsRounded";
 import SearchOutlinedIcon from "@material-ui/icons/SearchOutlined";
 import ChatRoundedIcon from "@material-ui/icons/ChatRounded";
-
+import axios from "axios";
 import HeaderOption from "../HeaderOption/HeaderOption";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import { login, logout } from "../../features/userSlice";
+import getApi from "../../utils/apis";
+import { Cookies } from "js-cookie";
 function Header() {
-	const loginStatus = useSelector((state) => state.user.isLoggedIn);
+	const dispatch = useDispatch();
+	const handleLogout = (e) => {
+		e.preventDefault();
+
+		// dispatch(getUser());
+		axios({
+			method: "get",
+			url: getApi("api/user/myProfile"),
+		})
+			.then((res) => {
+				dispatch(logout());
+				console.log(res);
+				Cookies.remove("access_token");
+			})
+			.catch((err) => {
+				alert("Internal Server Error");
+			});
+	};
+	const loginStatus = useSelector((state) => state.user.login);
 	return (
 		<div>
-			{loginStatus ? (
+			{loginStatus.userJwt !== "" && loginStatus.isLoggedIn === true ? (
 				<div className='header'>
-					<div className='header__left'>
-						<img src={logo} alt='' />
-					</div>
+					<Link to='/'>
+						<div className='header__left'>
+							<img src={logo} alt='' />
+						</div>
+					</Link>
 					<div className='header__middle'>
 						<div className='header__search'>
 							<input type='text' name='' id='' />
@@ -40,14 +63,21 @@ function Header() {
 							avatar='https://media-exp1.licdn.com/dms/image/C4E03AQHRjLPA2E9-Gg/profile-displayphoto-shrink_400_400/0/1616477273357?e=1635379200&v=beta&t=uyHlw8T8hcTuHBfRKVe1aYnxIg_eQMAvikk8_UqglZY'
 							title='Deepanshu'
 						/>
+						<Link to='/'>
+							<button className='loginHeader__button' onClick={handleLogout}>
+								Logout
+							</button>
+						</Link>
 					</div>
 				</div>
 			) : (
 				<div>
-					<div className='loginHeader'>
-						<div className='loginHeader__left'>
-							<img src={logo} alt='' />
-						</div>
+					<div className='loginHeader' style={{ width: "100vw" }}>
+						<Link to='/'>
+							<div className='loginHeader__left'>
+								<img src={logo} alt='' />
+							</div>
+						</Link>
 						<div className='loginHeader__right'>
 							<Link to='/login'>
 								<button className='loginHeader__button'>Sign Up</button>

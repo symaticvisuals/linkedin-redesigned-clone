@@ -24,9 +24,11 @@ export const userSlice = createSlice({
 	},
 	reducers: {
 		login: (state, action) => {
-			const newLogin = {};
-			state.login.isLoggedIn = action.payload;
-			state.login.userJwt = action.payload;
+			const newLogin = {
+				...action.payload,
+			};
+			state.login.isLoggedIn = newLogin.isLoggedIn;
+			state.login.userJwt = newLogin.userJwt;
 		},
 		register: (state, action) => {
 			const newUser = {
@@ -58,7 +60,8 @@ export const userSlice = createSlice({
 			state.user.profilePicture = newUser.profilePicture;
 		},
 		logout: (state) => {
-			state.user = null;
+			state.login.isLoggedIn = false;
+			state.login.userJwt = "";
 		},
 	},
 });

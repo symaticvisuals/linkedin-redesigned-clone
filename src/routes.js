@@ -6,11 +6,12 @@ import Login from "./Components/LoginForm/Login";
 
 import Profile from "./Components/Profile/Profile";
 import SignUp from "./Components/SignUpForm/SignUp";
+import { login } from "./features/userSlice";
 function Routes() {
-	const loginStatus = useSelector((state) => state.user.isLoggedIn);
+	const loginStatus = useSelector((state) => state.user.login);
 	return (
 		<Switch>
-			{!loginStatus ? (
+			{loginStatus.isLoggedIn === false && loginStatus.userJwt === "" ? (
 				<div>
 					<Route path='/' exact component={HeroPage} />
 					<Route exact path='/login' component={Login} />
