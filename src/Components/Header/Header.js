@@ -19,19 +19,31 @@ function Header() {
 	const dispatch = useDispatch();
 	const handleLogout = (e) => {
 		e.preventDefault();
+		let axiosConfig = {
+			withCredentials: true,
+		};
 
 		// dispatch(getUser());
-		axios({
-			method: "get",
-			url: getApi("api/user/myProfile"),
-		})
+		// axios({
+		// 	method: "get",
+		// 	url: getApi("api/user/myProfile"),
+		// })
+		// 	.then((res) => {
+		// 		dispatch(logout());
+		// 		console.log(res);
+		// 		Cookies.remove("access_token");
+		// 	})
+		// 	.catch((err) => {
+		// 		alert("Internal Server Error");
+		// 	});
+
+		axios
+			.get(getApi("api/user/logout"), axiosConfig)
 			.then((res) => {
-				dispatch(logout());
 				console.log(res);
-				Cookies.remove("access_token");
 			})
 			.catch((err) => {
-				alert("Internal Server Error");
+				alert(err);
 			});
 	};
 	const loginStatus = useSelector((state) => state.user.login);

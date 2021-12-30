@@ -5,8 +5,10 @@ import { getUser, login } from "../../features/userSlice";
 import logo from "../../images/logo.png";
 import "./Login.css";
 import instance from "../../utils/axios";
+import getApi from "../../utils/apis";
 
 import Cookies from "js-cookie";
+import axios from "axios";
 function Login() {
 	const [loginUser, setLogin] = useState({});
 	const dispatch = useDispatch();
@@ -15,19 +17,32 @@ function Login() {
 		e.preventDefault();
 		console.log(loginUser);
 		// dispatch(getUser());
-		instance({
-			method: "post",
-			url: "api/user/login",
-			data: {
-				email: `${loginUser.email}`,
-				password: `${loginUser.password}`,
-			},
-		})
+		// instance({
+		// 	method: "post",
+		// 	url: "api/user/login",
+		// 	data: {
+		// 		email: `${loginUser.email}`,
+		// 		password: `${loginUser.password}`,
+		// 	},
+		// })
+		let axiosConfig = {
+			withCredentials: true,
+		};
+
+		axios
+			.post(
+				getApi("api/user/login"),
+				{
+					email: `${loginUser.email}`,
+					password: `${loginUser.password}`,
+				},
+				axiosConfig
+			)
 			.then((res) => {
 				dispatch(getUser(res.data.data.user));
 				dispatch(login({ userJwt: res.data.data.jwt, isLoggedIn: true }));
-				Cookies.set("access_token", res.data.data.jwt);
-
+				// Cookies.set("access_token", res.data.data.jwt);
+				console.log(res);
 				console.log(loginDetails);
 			})
 			.catch((err) => {
