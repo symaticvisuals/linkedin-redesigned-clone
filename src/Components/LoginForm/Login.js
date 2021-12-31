@@ -1,38 +1,45 @@
 import React, { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { getUser, login } from "../../features/userSlice";
 import logo from "../../images/logo.png";
 import "./Login.css";
+
+import { getApi } from "../../utils/apis";
+
+import Cookies from "js-cookie";
 import axios from "axios";
 function Login() {
 	const [loginUser, setLogin] = useState({});
 	const dispatch = useDispatch();
-
+	const loginDetails = useSelector((state) => state.user.login);
 	const handleSubmit = (e) => {
 		e.preventDefault();
 		console.log(loginUser);
-		// dispatch(getUser());
-		axios({
-			method: "post",
-			url: "http://localhost:3001/api/user/login",
-			data: {
-				email: `${loginUser.email}`,
-				password: `${loginUser.password}`,
-			},
-		})
+
+		let axiosConfig = {
+			withCredentials: true,
+		};
+
+		axios
+			.post(
+				getApi("api/user/login"),
+				{
+					email: `${loginUser.email}`,
+					password: `${loginUser.password}`,
+				},
+				axiosConfig
+			)
 			.then((res) => {
+				dispatch(getUser(res.data.data.user));
+				dispatch(login({ userJwt: res.data.data.jwt, isLoggedIn: true }));
+				Cookies.set("access_token", res.data.data.jwt);
 				console.log(res);
-				// if (res.data.success === true) {
-				// 	alert("Registration Successful");
-				// } else {
-				// 	alert("Invalid Credentials");
-				// }
+				console.log(loginDetails);
 			})
 			.catch((err) => {
 				console.log(err);
 			});
-		dispatch(login({ isLoggedIn: true }));
 	};
 
 	return (
@@ -70,7 +77,7 @@ function Login() {
 							}
 						/>
 
-						<button onClick={handleSubmit}>Sign Up</button>
+						<button onClick={handleSubmit}>Sign In</button>
 					</form>
 					<p>Don't have a Account?</p>
 					<span>

@@ -7,37 +7,33 @@ import AssignmentRoundedIcon from "@material-ui/icons/AssignmentRounded";
 import { Avatar, Divider } from "@material-ui/core";
 import InputOption from "../InputOption/InputOption";
 import Post from "../Post/Post";
-import { db } from "../../firebase";
-import firebase from "firebase";
+import axios from "axios";
+import { getApi } from "../../utils/apis";
+import Cookies from "js-cookie";
+import { posts } from "../../data/posts";
 
 function Feed() {
 	const [input, setInput] = React.useState("");
-	const [posts, setPosts] = React.useState([]);
-
-	useEffect(() => {
-		db.collection("posts")
-			.orderBy("timePosted", "desc")
-			.onSnapshot((snapshot) =>
-				setPosts(
-					snapshot.docs.map((doc) => ({
-						id: doc.id,
-						data: doc.data(),
-					}))
-				)
-			);
-	}, []);
+	// const [posts, setPosts] = React.useState([]);
+	// const getAllPosts = () => {
+	// 	axios
+	// 		.get(getApi("api/user/posts/myPosts"), {
+	// 			headers: { access_token: `${Cookies.get("access-token")}` },
+	// 		})
+	// 		.then((res) => {
+	// 			console.log(res);
+	// 		})
+	// 		.catch((err) => {
+	// 			console.log(err);
+	// 		});
+	// };
+	// useEffect(() => {
+	// 	getAllPosts();
+	// }, []);
 
 	const sendPost = (e) => {
 		e.preventDefault();
-		db.collection("posts").add({
-			name: "Deepanshu Goel",
-			designation:
-				"UI/UX Designer .Full-Stack Developer .Open Source at @CodeForCause .Webmaster IEEE .Campus Ambassador @Gemini Solutions",
-			timePosted: firebase.firestore.FieldValue.serverTimestamp(),
-			message: input,
-			profile:
-				"https://media-exp1.licdn.com/dms/image/C4E03AQHRjLPA2E9-Gg/profile-displayphoto-shrink_400_400/0/1616477273357?e=1635379200&v=beta&t=uyHlw8T8hcTuHBfRKVe1aYnxIg_eQMAvikk8_UqglZY",
-		});
+
 		setInput("");
 	};
 
@@ -85,17 +81,31 @@ function Feed() {
 			</div>
 			<div className='feed_posts'>
 				{posts.map(
-					({
-						id,
-						data: { name, designation, message, profile, timePosted },
-					}) => (
+					(
+						{
+							message,
+							number_of_likes,
+							number_of_comments,
+							tags,
+							time,
+							active,
+							postBy,
+							likes,
+							comments,
+						},
+						id
+					) => (
 						<Post
 							key={id}
-							name={name}
-							designation={designation}
-							profile={profile}
 							message={message}
-							timePosted={timePosted}
+							number_of_likes={number_of_likes}
+							number_of_comments={number_of_comments}
+							tags={tags}
+							time={time}
+							active={active}
+							postBy={postBy}
+							likes={likes}
+							comments={comments}
 						/>
 					)
 				)}

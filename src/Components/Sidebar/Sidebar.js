@@ -1,7 +1,9 @@
 import { Avatar } from "@material-ui/core";
 import React from "react";
+
 import "./Sidebar.css";
-function Sidebar() {
+function Sidebar(user) {
+	const { firstName, lastName, profilePicture, designation } = user.user;
 	const topics = [
 		"reactjs",
 		"programming",
@@ -15,19 +17,23 @@ function Sidebar() {
 			<p>{topic}</p>
 		</div>
 	);
+
 	return (
 		<div className='sidebar'>
 			<div className='sidebar__top'>
 				<img
-					src='https://media-exp1.licdn.com/dms/image/C5616AQEYtNnMmUy4nQ/profile-displaybackgroundimage-shrink_350_1400/0/1601497096905?e=1635379200&v=beta&t=FCHQgvSxw-IgIQlyPX41KJj6jsYWkxGj0OJFCpwAMbQ'
+					src='https://i.pinimg.com/originals/f9/90/c4/f990c41be2d28c8c2420d5d68f7d84d2.jpg'
 					alt=''
 				/>
+
 				<Avatar
-					src='https://media-exp1.licdn.com/dms/image/C4E03AQHRjLPA2E9-Gg/profile-displayphoto-shrink_400_400/0/1616477273357?e=1635379200&v=beta&t=uyHlw8T8hcTuHBfRKVe1aYnxIg_eQMAvikk8_UqglZY'
+					src={profilePicture ? profilePicture : ""}
 					className='sidebar__avatar'
 				/>
+				{console.log()}
 				<div className='sidebar__designations'>
-					<h2>Deepanshu Goel</h2>
+					{console.log(user)}
+					<h2>{firstName + " " + lastName}</h2>
 					<h5>
 						UI/UX Designer .Full-Stack Developer .Open Source at @CodeForCause
 						.Webmaster IEEE .Campus Ambassador @Gemini Solutions
