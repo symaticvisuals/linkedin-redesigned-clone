@@ -1,0 +1,46 @@
+.sidebar {
+  margin-left: 0;
+}
+
+.sidebar > img {
+  width: 25rem;
+}
+.sidebar__storage {
+  display: flex;
+  align-items: center;
+  justify-content: left;
+  background-color: #fff;
+  padding: 20px 0;
+  border-radius: 10px;
+  margin-top: 1rem;
+}
+.sidebar__piechart {
+  margin-left: -20px;
+}
+.sidebar__storage h2 {
+  margin-right: 40px;
+  margin-bottom: 10px;
+}
+
+.progress {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 20px;
+}
+.progress__container {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-align: left;
+}
+.progress__icon {
+  font-size: 2rem;
+  padding: 10px;
+  margin-right: 10px;
+  background-color: #fff;
+  border-radius: 5px;
+}
+progress {
+  width: 20.5rem;
+}

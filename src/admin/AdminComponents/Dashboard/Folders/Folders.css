@@ -1,0 +1,30 @@
+.folder__cards {
+  margin: 1rem 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, 175px);
+  grid-auto-rows: 180px;
+  gap: 20px;
+}
+.folder__card {
+  height: 130px;
+  width: 140px;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  background-color: #fff;
+  padding: 1rem;
+  border-radius: 10px;
+}
+
+.folder__icons {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+.folder__icon {
+  font-size: 2.5rem;
+}
+.folder__options {
+  font-size: 1.5rem;
+  cursor: pointer;
+}

@@ -1,0 +1,33 @@
+.navigation {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  height: 82vh;
+  margin-top: -20px;
+}
+
+.navigation__icons {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1.5rem;
+}
+.navigation__icon {
+  padding: 0.5rem;
+  font-size: 2rem;
+}
+.navigation__icon:hover {
+  background-color: grey;
+  color: white;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.user__profile {
+  text-align: center;
+}
+.profile__avatar {
+  font-size: 2rem;
+}
