@@ -1,0 +1,68 @@
+.admin__login {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  height: 90vh;
+  width: 88vw;
+}
+
+.admin__login__left {
+  flex: 0.5;
+}
+.admin__login__left h1 {
+  font-size: 50px;
+  font-weight: normal;
+}
+.admin__login__left p {
+  margin-top: 20px;
+  font-size: 30px;
+  font-weight: 200;
+}
+.linkedIn__logo {
+  width: 8rem;
+}
+
+.admin__login__right {
+  padding: 25px;
+  background-color: white;
+  border-radius: 10px;
+}
+.admin__login__right h1 {
+  margin-bottom: 1rem;
+}
+.admin__form {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+}
+.admin__form > input {
+  width: 400px;
+  height: 50px;
+  border-radius: 5px;
+  font-size: 15px;
+  margin-bottom: 10px;
+  padding-left: 10px;
+  border: 1px solid #121212;
+}
+.admin__form > label {
+  padding: 0.5rem 0;
+}
+.admin__form > label input {
+  margin-left: 3rem;
+  margin-right: 1rem;
+}
+.admin__form select {
+  width: 355px;
+  height: 50px;
+  margin-left: 20px;
+  outline: none;
+  border-radius: 5px;
+  border: 1px solid #121212;
+}
+
+.admin__signup__button {
+  margin-top: 1rem;
+}
+.admin__signup__button a {
+  color: black;
+}

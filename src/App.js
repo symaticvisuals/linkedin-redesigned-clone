@@ -10,16 +10,15 @@ import AdminRoutes from "./admin/admin_routes";
 
 
 function App() {
-	
-	return (
-		<div className='app'>
-			<Router>
-				<AdminRoutes />
-				<Header />
-				<Routes />
-			</Router>
-		</div>
-	);
+  return (
+    <div className="app">
+      <Router>
+        <Header />
+        <AdminRoutes />
+        <Routes />
+      </Router>
+    </div>
+  );
 }
 
 export default App;
