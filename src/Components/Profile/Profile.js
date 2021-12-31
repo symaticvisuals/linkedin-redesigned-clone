@@ -11,7 +11,7 @@ function Profile() {
 		<div>
 			<div className='app__body'>
 				<Sidebar user={user} />
-				<Feed user={user}/>
+				<Feed user={user} />
 				<Widgets />
 			</div>
 		</div>

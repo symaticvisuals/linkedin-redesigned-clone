@@ -9,20 +9,27 @@ import InputOption from "../InputOption/InputOption";
 import Post from "../Post/Post";
 import axios from "axios";
 import { getApi } from "../../utils/apis";
+import Cookies from "js-cookie";
+import { posts } from "../../data/posts";
 
 function Feed() {
 	const [input, setInput] = React.useState("");
-	const [posts, setPosts] = React.useState([]);
-	const getAllPosts = ()=>{
-		axios.get(getApi("api/user/posts/myPosts")).then((res)=>{
-			console.log(res);
-		}).catch((err)=>{
-			console.log(err);
-		})
-	}
-	useEffect(() => {
-		getAllPosts();
-	}, []);
+	// const [posts, setPosts] = React.useState([]);
+	// const getAllPosts = () => {
+	// 	axios
+	// 		.get(getApi("api/user/posts/myPosts"), {
+	// 			headers: { access_token: `${Cookies.get("access-token")}` },
+	// 		})
+	// 		.then((res) => {
+	// 			console.log(res);
+	// 		})
+	// 		.catch((err) => {
+	// 			console.log(err);
+	// 		});
+	// };
+	// useEffect(() => {
+	// 	getAllPosts();
+	// }, []);
 
 	const sendPost = (e) => {
 		e.preventDefault();
@@ -74,17 +81,31 @@ function Feed() {
 			</div>
 			<div className='feed_posts'>
 				{posts.map(
-					({
-						id,
-						data: { name, designation, message, profile, timePosted },
-					}) => (
+					(
+						{
+							message,
+							number_of_likes,
+							number_of_comments,
+							tags,
+							time,
+							active,
+							postBy,
+							likes,
+							comments,
+						},
+						id
+					) => (
 						<Post
 							key={id}
-							name={name}
-							designation={designation}
-							profile={profile}
 							message={message}
-							timePosted={timePosted}
+							number_of_likes={number_of_likes}
+							number_of_comments={number_of_comments}
+							tags={tags}
+							time={time}
+							active={active}
+							postBy={postBy}
+							likes={likes}
+							comments={comments}
 						/>
 					)
 				)}

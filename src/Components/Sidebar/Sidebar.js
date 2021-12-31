@@ -3,6 +3,7 @@ import React from "react";
 
 import "./Sidebar.css";
 function Sidebar(user) {
+	const { firstName, lastName, profilePicture, designation } = user.user;
 	const topics = [
 		"reactjs",
 		"programming",
@@ -26,12 +27,13 @@ function Sidebar(user) {
 				/>
 
 				<Avatar
-					src={user.profilePicture ? user.profilePicture : ""}
+					src={profilePicture ? profilePicture : ""}
 					className='sidebar__avatar'
 				/>
 				{console.log()}
 				<div className='sidebar__designations'>
-					<h2>{user.firstName + " " + user.lastName}</h2>
+					{console.log(user)}
+					<h2>{firstName + " " + lastName}</h2>
 					<h5>
 						UI/UX Designer .Full-Stack Developer .Open Source at @CodeForCause
 						.Webmaster IEEE .Campus Ambassador @Gemini Solutions
