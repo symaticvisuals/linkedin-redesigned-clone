@@ -7,12 +7,22 @@ import AssignmentRoundedIcon from "@material-ui/icons/AssignmentRounded";
 import { Avatar, Divider } from "@material-ui/core";
 import InputOption from "../InputOption/InputOption";
 import Post from "../Post/Post";
+import axios from "axios";
+import { getApi } from "../../utils/apis";
 
 function Feed() {
 	const [input, setInput] = React.useState("");
 	const [posts, setPosts] = React.useState([]);
-
-	useEffect(() => {}, []);
+	const getAllPosts = ()=>{
+		axios.get(getApi("api/user/posts/myPosts")).then((res)=>{
+			console.log(res);
+		}).catch((err)=>{
+			console.log(err);
+		})
+	}
+	useEffect(() => {
+		getAllPosts();
+	}, []);
 
 	const sendPost = (e) => {
 		e.preventDefault();

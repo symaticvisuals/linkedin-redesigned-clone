@@ -13,7 +13,7 @@ import HeaderOption from "../HeaderOption/HeaderOption";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { login, logout } from "../../features/userSlice";
-import getApi from "../../utils/apis";
+import { getApi } from "../../utils/apis";
 import { Cookies } from "js-cookie";
 function Header() {
 	const dispatch = useDispatch();
@@ -92,7 +92,7 @@ function Header() {
 						</Link>
 						<div className='loginHeader__right'>
 							<Link to='/login'>
-								<button className='loginHeader__button'>Sign Up</button>
+								<button className='loginHeader__button'>Sign In</button>
 							</Link>
 						</div>
 					</div>
