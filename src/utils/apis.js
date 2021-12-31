@@ -4,8 +4,7 @@
  * @returns
  */
 const getApi = (endpoint) => {
-	// return `https://linkedin-redesigned-server.herokuapp.com/${endpoint}`;
 	return `https://linkedin-redesigned-server.herokuapp.com/${endpoint}`;
 };
 
-export default getApi;
+export { getApi };

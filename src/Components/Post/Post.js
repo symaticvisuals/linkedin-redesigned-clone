@@ -1,17 +1,37 @@
-import { Avatar, Divider } from "@material-ui/core";
+import { Avatar, Badge, Divider } from "@material-ui/core";
 import React from "react";
 import "./Post.css";
 import ThumbUpOutlinedIcon from "@material-ui/icons/ThumbUpOutlined";
 import SmsOutlinedIcon from "@material-ui/icons/SmsOutlined";
 import BookmarkBorderOutlinedIcon from "@material-ui/icons/BookmarkBorderOutlined";
-function Post({ name, designation, message, profile, timePosted }) {
+function Post({
+	message,
+	number_of_likes,
+	number_of_comments,
+	tags,
+	time,
+	active,
+	postBy,
+	likes,
+	comments,
+}) {
 	return (
 		<div className='post'>
 			<div className='post__profileSection'>
-				<Avatar src={profile} />
+				<Badge
+					color={active === 0 ? "primary" : "secondary"}
+					overlap='circular'
+					variant='dot'
+					anchorOrigin={{
+						vertical: "bottom",
+						horizontal: "right",
+					}}
+				>
+					<Avatar src='' />
+				</Badge>
 				<div className='profileSection__details'>
-					<h5>{name}</h5>
-					<p>{designation}</p>
+					<h5>Deepanshu Goel</h5>
+					<p>Student</p>
 				</div>
 			</div>
 			<Divider />
