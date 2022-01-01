@@ -27,7 +27,11 @@ function Sidebar(user) {
 				/>
 
 				<Avatar
-					src={profilePicture ? profilePicture : ""}
+					src={
+						profilePicture
+							? `https://linkedin-redesigned-server.herokuapp.com/images/${profilePicture}`
+							: ""
+					}
 					className='sidebar__avatar'
 				/>
 				{console.log()}

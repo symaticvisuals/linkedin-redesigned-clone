@@ -44,7 +44,7 @@
 	font-weight: 500;
 	display: block;
 	font-size: 15px;
-	height: 100px;
+	height: 200px;
 	resize: none;
 	overflow: visible;
 }
@@ -65,4 +65,13 @@
 	color: white;
 	font-weight: 600;
 	cursor: pointer;
+}
+.feed__tags__input {
+	border: none;
+}
+.feed__tags__input:hover {
+	border-bottom: none;
+}
+.feed__tags__input:focus {
+	border-bottom: none;
 }
