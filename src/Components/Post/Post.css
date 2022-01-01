@@ -5,8 +5,8 @@
 }
 .post__profileSection {
 	padding: 0 10px;
-	padding-bottom: 10px;
-	padding-top: 20px;
+	padding-bottom: 0px;
+	padding-top: 15px;
 	display: flex;
 
 	margin-bottom: 10px;
@@ -23,7 +23,8 @@
 	color: gray;
 }
 .post__messageSection {
-	margin-top: 20px;
+	margin-top: 10px;
+	border-radius: 10px;
 }
 .post__messageSection > p {
 	padding: 0 20px;
@@ -33,8 +34,9 @@
 	display: flex;
 }
 .post__messageSection > img {
-	margin-top: 20px;
+	/* margin-top: 20px; */
 	width: 100%;
+	border-radius: 10px;
 	height: auto;
 	max-height: 250px;
 
@@ -49,7 +51,7 @@
 }
 
 .post__like > div > h4 {
-	font-size: 14px;
+	font-size: 12px;
 }
 .like {
 	display: flex;
@@ -59,7 +61,7 @@
 }
 .like:hover,
 .comment:hover {
-	background-color: lightgrey;
+	background-color: rgb(241, 241, 241);
 	border-radius: 10px;
 	cursor: pointer;
 }

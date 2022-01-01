@@ -14,9 +14,18 @@ function Post({
 	postBy,
 	likes,
 	comments,
+	image,
 }) {
 	return (
+		// TODO: Add Comment and Like buttons
 		<div className='post'>
+			<div className='post__messageSection'>
+				<img
+					// src={`https://linkedin-redesigned-server.herokuapp.com/images/${image}`}
+					src='https://designshack.net/wp-content/uploads/ADL-Clean-Instagram-Post-Templates.jpg'
+					alt='postImage'
+				></img>
+			</div>
 			<div className='post__profileSection'>
 				<Badge
 					color={active === 0 ? "primary" : "secondary"}
@@ -27,35 +36,27 @@ function Post({
 						horizontal: "right",
 					}}
 				>
-					<Avatar src='' />
+					<Avatar src={postBy.profilePicture} />
 				</Badge>
 				<div className='profileSection__details'>
-					<h5>Deepanshu Goel</h5>
+					<h5>{postBy.userName}</h5>
 					<p>Student</p>
 				</div>
 			</div>
-			<Divider />
-			<div className='post__messageSection'>
-				<p>{message}</p>
-
-				<img
-					src='https://www.nicepng.com/png/detail/20-203753_comic-boom-png-comic-book-boom-png.png'
-					alt='postImage'
-				></img>
-			</div>
+			<p>{message}</p>
 			<div className='post__reviews'>
 				<div className='post__like'>
 					<div className='like'>
 						<ThumbUpOutlinedIcon
 							style={{
-								fontSize: "25px",
+								fontSize: "20px",
 								marginRight: "5px",
 							}}
 						/>
 						<h4>Like</h4>
 					</div>
 					<div className='comment'>
-						<SmsOutlinedIcon style={{ fontSize: "25px", marginRight: "5px" }} />
+						<SmsOutlinedIcon style={{ fontSize: "20px", marginRight: "5px" }} />
 						<h4>Comment</h4>
 					</div>
 				</div>
