@@ -1,5 +1,5 @@
 .admin__dashboard {
-  margin: 2rem;
+  margin: 2rem 6.5rem;
   display: grid;
   grid-template-columns: 1fr 17fr 2fr;
   gap: 4rem;
