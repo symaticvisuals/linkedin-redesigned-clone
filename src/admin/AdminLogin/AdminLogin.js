@@ -1,41 +1,44 @@
-import React, { useState, useDispatch, useSelector } from "react";
+import React, { useState } from "react";
 import "./AdminLogin.css";
 
 import logo from "../../images/logo.png";
 import axios from "axios";
+import { getApi } from "../../utils/apis";
+import { login } from "../../features/adminSlice";
+import { useDispatch, useSelector } from "react-redux";
 
 function AdminLogin() {
-  const [loginUser, setLogin] = useState({});
-  // const dispatch = useDispatch();
-  // const loginDetails = useSelector((state) => state.user.login);
+  const [loginAdmin, setLogin] = useState({});
+  // const loginDetails = useSelector((state) => state.admin);
+  // TODO: useSelector hook
+  const dispatch = useDispatch();
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(loginUser);
-    // dispatch(getUser());
-    // instance({
-    // 	method: "post",
-    // 	url: "api/user/login",
-    // 	data: {
-    // 		email: `${loginUser.email}`,
-    // 		password: `${loginUser.password}`,
-    // 	},
-    // })
+    console.log(loginAdmin);
+
     let axiosConfig = {
       withCredentials: true,
     };
 
     axios
       .post(
-        "https://linkedin-redesigned-server.herokuapp.com/api/admin/login",
+        getApi("api/admin/login"),
         {
-          userName: `${loginUser.userName}`,
-          password: `${loginUser.password}`,
+          userName: `${loginAdmin.userName}`,
+          password: `${loginAdmin.password}`,
         },
         axiosConfig
       )
       .then((res) => {
         console.log(res);
-        // console.log(loginDetails);
+        dispatch(
+          login({
+            userName: res.data.data.userName,
+            id: res.data.data.id,
+            jwtToken: res.data.data.jwtToken,
+            isLoggedIn: true,
+          })
+        );
       })
       .catch((err) => {
         console.log(err);
@@ -44,6 +47,7 @@ function AdminLogin() {
 
   return (
     <div className="admin__login">
+      {/* {console.log(loginDetails)} */}
       <div className="admin__login__left">
         <img src={logo} alt="logo" className="linkedIn__logo" />
         <h1>
@@ -58,14 +62,16 @@ function AdminLogin() {
           <input
             type="text"
             placeholder="Username"
-            onChange={(e) => setLogin({ ...loginUser, userName: e.target.value })}
+            onChange={(e) =>
+              setLogin({ ...loginAdmin, userName: e.target.value })
+            }
             required
           />
           <input
             type="password"
             placeholder="Password"
             onChange={(e) =>
-              setLogin({ ...loginUser, password: e.target.value })
+              setLogin({ ...loginAdmin, password: e.target.value })
             }
             required
           />

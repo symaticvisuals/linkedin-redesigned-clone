@@ -1,7 +1,7 @@
 import React from "react";
 import "./Navigation.css";
 
-import logo from "../../../../images/logo.png";
+// import logo from "../../../../images/logo.png";
 import {
   MdOutlineDashboard,
   MdOutlineAnalytics,
@@ -13,7 +13,8 @@ import { BiUserCircle } from "react-icons/bi";
 function Navigation() {
   return (
     <div className="navigation">
-      <img src={logo} alt="logo" className="linkedIn__logo" />
+      {/* <img src={logo} alt="logo" className="linkedIn__logo" /> */}
+      <span></span>
       <div className="navigation__icons">
         <MdOutlineDashboard className="navigation__icon" />
         <MdFolderOpen className="navigation__icon" />
