@@ -6,7 +6,7 @@ import Login from "./Components/LoginForm/Login";
 
 import Profile from "./Components/Profile/Profile";
 import SignUp from "./Components/SignUpForm/SignUp";
-import { login } from "./features/userSlice";
+
 function Routes() {
 	const loginStatus = useSelector((state) => state.user.login);
 	return (

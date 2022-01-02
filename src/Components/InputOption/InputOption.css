@@ -17,12 +17,14 @@
 .inputOptionSend {
 	display: flex;
 	align-items: center;
-	padding: 14px 14px;
+	justify-content: center;
+	padding: 10px 17px;
 	background-color: #0080b4;
-	border-radius: 40px;
+	border-radius: 50px;
+	margin-left: 10px;
 }
 .inputOptionSend:hover {
 	background-color: #015e83;
 	cursor: pointer;
-	border-radius: 40px;
+	border-radius: 50px;
 }

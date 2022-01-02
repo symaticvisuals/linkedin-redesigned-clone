@@ -2,28 +2,19 @@ import React, { useEffect } from "react";
 import "./Feed.css";
 import InsertPhotoRoundedIcon from "@material-ui/icons/InsertPhotoRounded";
 import MovieCreationRoundedIcon from "@material-ui/icons/MovieCreationRounded";
-import WorkRoundedIcon from "@material-ui/icons/WorkRounded";
+
 import SendRoundedIcon from "@material-ui/icons/SendRounded";
-import { Avatar, Divider, TextField } from "@material-ui/core";
+import { Avatar, TextField } from "@material-ui/core";
 import InputOption from "../InputOption/InputOption";
 import Post from "../Post/Post";
 import axios from "axios";
 import { getApi } from "../../utils/apis";
-import makeStyles from "@material-ui/core/styles/makeStyles";
+
 import Autocomplete from "@material-ui/lab/Autocomplete";
 
 import tags from "../../data/tags";
 // import { posts } from "../../data/posts";
-const useStyles = makeStyles((theme) => ({
-	underline: {
-		"&&&:before": {
-			borderBottom: "none",
-		},
-		"&&:after": {
-			borderBottom: "none",
-		},
-	},
-}));
+
 function Feed() {
 	const [input, setInput] = React.useState("");
 	const [count, setCount] = React.useState(0);
@@ -60,18 +51,12 @@ function Feed() {
 
 	//FIXME: Fix : This is not working
 
-	const sendPost = (e) => {
-		e.preventDefault();
-
-		setInput("");
-	};
-
 	const options = [
 		{ Icon: InsertPhotoRoundedIcon, color: "#70B5F9", title: "Photo" },
 		{ Icon: MovieCreationRoundedIcon, color: "#FFC107", title: "Video" },
 		{ Icon: SendRoundedIcon, color: "#fff", title: "Send" },
 	];
-	const classes = useStyles();
+
 	return (
 		<div className='feed'>
 			<div className='feed__inputContainer'>
@@ -100,6 +85,7 @@ function Feed() {
 									filterSelectedOptions
 									onChange={(e, value) => {
 										setPostTags(value);
+										console.log(postTags);
 									}}
 									openOnFocus={true}
 									renderInput={(params) => (
@@ -118,6 +104,8 @@ function Feed() {
 										Icon={option.Icon}
 										color={option.color}
 										title={option.title}
+										input={input}
+										postTags={postTags}
 									/>
 								))}
 							</div>
@@ -140,13 +128,15 @@ function Feed() {
 							likes,
 							comments,
 							image,
+							_id,
 						},
 						key
 					) => (
 						// TODO: Add the post by name and profile pic
 
 						<Post
-							key={key}
+							key={message}
+							id={_id}
 							message={message}
 							number_of_likes={number_of_likes}
 							number_of_comments={number_of_comments}

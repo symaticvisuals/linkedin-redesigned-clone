@@ -3,7 +3,7 @@ import React from "react";
 
 import "./Sidebar.css";
 function Sidebar(user) {
-	const { firstName, lastName, profilePicture, designation } = user.user;
+	const { firstName, lastName, profilePicture } = user.user;
 	const topics = [
 		"reactjs",
 		"programming",
@@ -32,6 +32,10 @@ function Sidebar(user) {
 							? `https://linkedin-redesigned-server.herokuapp.com/images/${profilePicture}`
 							: ""
 					}
+					style={{
+						height: "50px",
+						width: "50px",
+					}}
 					className='sidebar__avatar'
 				/>
 				{console.log()}
