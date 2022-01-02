@@ -1,0 +1,85 @@
+.feed {
+	flex: 0.5;
+}
+
+.feed__inputContainer {
+	background-color: white;
+	border-radius: 10px;
+	padding: 10px;
+
+	margin-bottom: 20px;
+}
+
+.feed__input {
+	/* border: 1px solid lightgray; */
+	border-radius: 30px;
+	display: flex;
+	padding: 10px;
+	color: gray;
+	padding-left: 15px;
+	padding-bottom: 0;
+}
+
+.feed__input > form {
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+	min-height: 100px;
+}
+
+::placeholder {
+	/* Chrome, Firefox, Opera, Safari 10.1+ */
+	color: lightgray;
+	opacity: 1; /* Firefox */
+}
+.feed__writeArea {
+	display: flex;
+	align-items: flex-start;
+}
+.feed__writeArea > textarea {
+	border: none;
+	flex: 1;
+	margin-left: 10px;
+	outline-width: 0;
+	font-weight: 500;
+	display: block;
+	font-size: 15px;
+	height: 200px;
+	resize: none;
+	overflow: visible;
+}
+
+.feed__input > form > button {
+	display: none;
+}
+.feed__inputOptions {
+	margin-top: 10px;
+	display: flex;
+	justify-content: space-around;
+}
+.feed__button {
+	border-radius: 60px;
+	padding: 10px 20px;
+	background-color: #0080b4;
+	border: none;
+	color: white;
+	font-weight: 600;
+	cursor: pointer;
+}
+.feed__tags__input {
+	border: none;
+}
+.feed__tags__input:hover {
+	border-bottom: none;
+}
+.feed__tags__input:focus {
+	border-bottom: none;
+}
+.feed__tags {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+.feed__autocomplete {
+	flex-grow: 1;
+}

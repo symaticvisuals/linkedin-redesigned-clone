@@ -1,0 +1,18 @@
+.admin__dashboard {
+  margin: 2rem 6.5rem;
+  display: grid;
+  grid-template-columns: 1fr 17fr 2fr;
+  gap: 4rem;
+}
+
+.main__sections {
+  display: flex;
+  gap: 3rem;
+}
+
+.blue {
+  color: #0e76a8;
+}
+.grey {
+  color: grey;
+}

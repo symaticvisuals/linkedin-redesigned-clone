@@ -1,0 +1,56 @@
+.hero__main {
+	width: 100vw;
+}
+.hero {
+	background-color: white;
+
+	display: flex;
+	align-items: center;
+	justify-content: space-around;
+	min-height: 80vh;
+}
+.hero__left > h1 {
+	font-size: 3em;
+	font-weight: 400;
+	color: #0080b4;
+}
+.hero__left > h3 {
+	margin-top: 10px;
+	padding-left: 4px;
+	font-weight: 400;
+	font-size: 1.2rem;
+}
+.hero__buttons {
+	margin-top: 20px;
+}
+.hero__button {
+	padding: 10px 20px;
+	border: 2px solid #0080b4;
+	border-radius: 60px;
+	margin-top: 10px;
+	text-align: center;
+}
+.hero__button > a {
+	text-decoration: none;
+	color: #0080b4;
+	font-weight: 500;
+}
+.hero__button:hover {
+	background-color: #c0e6f5;
+	border: 3px solid #0080b4;
+	padding: 9px 19px;
+	transition: all 0.2s ease-in-out;
+}
+.hero__socials {
+	display: flex;
+	align-items: flex-start;
+	padding: 20px 10px;
+}
+.social {
+	font-size: 30px !important;
+	margin-right: 15px;
+	color: #0080b4;
+}
+.social:hover {
+	color: #005b80;
+}

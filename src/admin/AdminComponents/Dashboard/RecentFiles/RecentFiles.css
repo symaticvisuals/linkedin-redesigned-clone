@@ -1,0 +1,9 @@
+.files__container {
+  background-color: #fff;
+  width: 350px;
+  padding: 0.5rem;
+  border-radius: 5px;
+}
+.files__container p {
+  margin-top: -15px;
+}

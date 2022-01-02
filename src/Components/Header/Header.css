@@ -1,0 +1,42 @@
+.header {
+	display: flex;
+	align-items: center;
+	justify-content: space-evenly;
+	padding: 10px 0;
+	width: 100vw;
+	z-index: 999;
+	position: sticky;
+	top: 0;
+	background-color: white;
+}
+
+.header__left > img {
+	object-fit: contain;
+	height: 60px;
+}
+
+.header__search {
+	display: flex;
+	padding: 10px;
+
+	align-items: center;
+	border-radius: 5px;
+	height: 15px;
+	color: #636363;
+	border: 1px solid #e0e0e0;
+	background-color: #efefef;
+}
+.header__middle {
+	flex-grow: 0.5;
+}
+.header__search > input {
+	outline: none;
+	border: none;
+	flex-grow: 1;
+	background: none;
+}
+
+.header__right {
+	display: flex;
+	justify-content: space-around;
+}
