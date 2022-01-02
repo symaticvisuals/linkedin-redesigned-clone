@@ -2,12 +2,18 @@ import React from "react";
 import "./InputOption.css";
 function InputOption({ Icon, color, title }) {
 	return (
-		<div className='inputOption'>
-			<Icon
-				className='inputOption__icon'
-				style={{ color: color, fontSize: "20px" }}
-			/>
-			<h6>{title}</h6>
+		<div className={title === "Send" ? "inputOptionSend" : "inputOption"}>
+			{title === "Send" ? (
+				<Icon
+					className='inputOption__icon'
+					style={{ color: color, fontSize: "20px" }}
+				/>
+			) : (
+				<Icon
+					className='inputOption__icon'
+					style={{ color: color, fontSize: "20px" }}
+				/>
+			)}
 		</div>
 	);
 }

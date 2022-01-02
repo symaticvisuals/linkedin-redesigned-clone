@@ -1,7 +1,7 @@
 .inputOption {
 	display: flex;
 	align-items: center;
-	padding: 8px 14px;
+	padding: 14px 14px;
 }
 .inputOption > h6 {
 	margin-left: 5px;
@@ -12,5 +12,17 @@
 .inputOption:hover {
 	background-color: #f3f2ef;
 	cursor: pointer;
-	border-radius: 10px;
+	border-radius: 40px;
+}
+.inputOptionSend {
+	display: flex;
+	align-items: center;
+	padding: 14px 14px;
+	background-color: #0080b4;
+	border-radius: 40px;
+}
+.inputOptionSend:hover {
+	background-color: #015e83;
+	cursor: pointer;
+	border-radius: 40px;
 }

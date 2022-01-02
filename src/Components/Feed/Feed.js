@@ -3,20 +3,30 @@ import "./Feed.css";
 import InsertPhotoRoundedIcon from "@material-ui/icons/InsertPhotoRounded";
 import MovieCreationRoundedIcon from "@material-ui/icons/MovieCreationRounded";
 import WorkRoundedIcon from "@material-ui/icons/WorkRounded";
-import AssignmentRoundedIcon from "@material-ui/icons/AssignmentRounded";
+import SendRoundedIcon from "@material-ui/icons/SendRounded";
 import { Avatar, Divider, TextField } from "@material-ui/core";
 import InputOption from "../InputOption/InputOption";
 import Post from "../Post/Post";
 import axios from "axios";
 import { getApi } from "../../utils/apis";
-
+import makeStyles from "@material-ui/core/styles/makeStyles";
 import Autocomplete from "@material-ui/lab/Autocomplete";
-import Cookies from "js-cookie";
+
 import tags from "../../data/tags";
 // import { posts } from "../../data/posts";
-
+const useStyles = makeStyles((theme) => ({
+	underline: {
+		"&&&:before": {
+			borderBottom: "none",
+		},
+		"&&:after": {
+			borderBottom: "none",
+		},
+	},
+}));
 function Feed() {
 	const [input, setInput] = React.useState("");
+	const [count, setCount] = React.useState(0);
 	const [posts, setPosts] = React.useState([]);
 	const [postTags, setPostTags] = React.useState([]);
 	const getAllPosts = () => {
@@ -38,11 +48,15 @@ function Feed() {
 			});
 	};
 	useEffect(() => {
+		if (count === 0) {
+			getAllPosts();
+			setCount(1);
+		}
 		const timer = setTimeout(() => {
 			getAllPosts();
 		}, 60000);
 		return () => clearTimeout(timer);
-	}, [posts]);
+	}, [posts, count]);
 
 	//FIXME: Fix : This is not working
 
@@ -55,10 +69,9 @@ function Feed() {
 	const options = [
 		{ Icon: InsertPhotoRoundedIcon, color: "#70B5F9", title: "Photo" },
 		{ Icon: MovieCreationRoundedIcon, color: "#FFC107", title: "Video" },
-		{ Icon: WorkRoundedIcon, color: "#F44336", title: "Job" },
-		{ Icon: AssignmentRoundedIcon, color: "#FF9800", title: "Write Article" },
+		{ Icon: SendRoundedIcon, color: "#fff", title: "Send" },
 	];
-
+	const classes = useStyles();
 	return (
 		<div className='feed'>
 			<div className='feed__inputContainer'>
@@ -77,40 +90,39 @@ function Feed() {
 							/>
 						</div>
 						<div className='feed__tags'>
-							<Autocomplete
-								multiple
-								id='tags-outlined'
-								options={tags}
-								getOptionLabel={(option) => option.title}
-								defaultValue={[tags[2]]}
-								filterSelectedOptions
-								onChange={(e) => {}}
-								renderInput={(params) => (
-									<TextField
-										{...params}
-										style={{ borderBottom: 0 }}
-										classes={{
-											root: "feed__tags__input",
-										}}
-										placeholder='Tags'
+							<div className='feed__autocomplete'>
+								<Autocomplete
+									multiple
+									id='tags-outlined'
+									options={tags}
+									getOptionLabel={(option) => option.title}
+									defaultValue={[tags[2]]}
+									filterSelectedOptions
+									onChange={(e, value) => {
+										setPostTags(value);
+									}}
+									openOnFocus={true}
+									renderInput={(params) => (
+										<TextField
+											{...params}
+											placeholder='Tags'
+											fullWidth='true'
+										/>
+									)}
+								/>
+							</div>
+							<div className='feed__inputOptions'>
+								{options.map((option) => (
+									<InputOption
+										key={option.Icon}
+										Icon={option.Icon}
+										color={option.color}
+										title={option.title}
 									/>
-								)}
-							/>
+								))}
+							</div>
 						</div>
 						{/* <Divider /> */}
-						<div className='feed__inputOptions'>
-							{options.map((option) => (
-								<InputOption
-									key={option.Icon}
-									Icon={option.Icon}
-									color={option.color}
-									title={option.title}
-								/>
-							))}
-							<button type='submit' className='feed__button' onClick={sendPost}>
-								Publish
-							</button>
-						</div>
 					</form>
 				</div>
 			</div>

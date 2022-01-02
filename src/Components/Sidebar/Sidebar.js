@@ -44,16 +44,7 @@ function Sidebar(user) {
 					</h5>
 				</div>
 			</div>
-			<div className='sidebar__stats'>
-				<div className='sidebar__stat'>
-					<p>Who viewed you</p>
-					<p className='sidebar__statNumber'>2543</p>
-				</div>
-				<div className='sidebar__stat'>
-					<p>Views on Post</p>
-					<p className='sidebar__statNumber'>3000</p>
-				</div>
-			</div>
+
 			<div className='sidebar__button'>
 				<p>Recent</p>
 				{topics.map((topic) => recentItem(topic))}

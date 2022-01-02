@@ -1,5 +1,6 @@
 .app {
-	background-color: #f3f2ef;
+	background-color: #f5f5f5;
+	/* background-color: #fff; */
 	display: flex;
 	flex-direction: column;
 
@@ -11,5 +12,5 @@
 	margin-top: 30px;
 	display: flex;
 	justify-content: space-evenly;
-	width: 95%;
+	max-width: 80vw;
 }

@@ -20,11 +20,13 @@ function Post({
 		// TODO: Add Comment and Like buttons
 		<div className='post'>
 			<div className='post__messageSection'>
-				<img
-					// src={`https://linkedin-redesigned-server.herokuapp.com/images/${image}`}
-					src='https://designshack.net/wp-content/uploads/ADL-Clean-Instagram-Post-Templates.jpg'
-					alt='postImage'
-				></img>
+				{!image ? (
+					<img
+						// src={`https://linkedin-redesigned-server.herokuapp.com/images/${image}`}
+						src='https://designshack.net/wp-content/uploads/ADL-Clean-Instagram-Post-Templates.jpg'
+						alt='postImage'
+					></img>
+				) : null}
 			</div>
 			<div className='post__profileSection'>
 				<Badge
