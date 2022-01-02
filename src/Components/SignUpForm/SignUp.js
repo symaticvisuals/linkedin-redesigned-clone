@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import "./SignUp.css";
-import logo from "../../images/logo.png";
+
 import { Link } from "react-router-dom";
 import axios from "axios";
 import { useDispatch } from "react-redux";
-import { getUser, login, register } from "../../features/userSlice";
+import { login, register } from "../../features/userSlice";
 
 function SignUp() {
 	const [registerUser, setRegister] = useState({});

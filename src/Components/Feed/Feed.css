@@ -75,3 +75,11 @@
 .feed__tags__input:focus {
 	border-bottom: none;
 }
+.feed__tags {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+.feed__autocomplete {
+	flex-grow: 1;
+}

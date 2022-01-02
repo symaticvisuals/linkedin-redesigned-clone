@@ -10,13 +10,12 @@ import SearchOutlinedIcon from "@material-ui/icons/SearchOutlined";
 import ChatRoundedIcon from "@material-ui/icons/ChatRounded";
 import axios from "axios";
 import HeaderOption from "../HeaderOption/HeaderOption";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import { login, logout } from "../../features/userSlice";
+
 import { getApi } from "../../utils/apis";
-import { Cookies } from "js-cookie";
+
 function Header() {
-	const dispatch = useDispatch();
 	const handleLogout = (e) => {
 		e.preventDefault();
 		let axiosConfig = {

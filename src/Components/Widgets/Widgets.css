@@ -3,7 +3,31 @@
 	flex: 0.2;
 	border-radius: 10px;
 	padding: 10px;
-	text-align: center;
+
 	margin-right: 4vw;
 	height: 50vh;
+}
+.widgets > h5 {
+	margin-bottom: 10px;
+}
+.random__user {
+	padding-top: 10px;
+	padding-left: 10px;
+	padding-right: 10px;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+.user__details {
+	margin-left: 5px;
+}
+.user__details > p {
+	font-size: 12px;
+}
+.user__details > h6 {
+	font-size: 14px;
+}
+.random__details {
+	display: flex;
+	align-items: center;
 }
