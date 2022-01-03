@@ -1,8 +1,23 @@
 .user {
-	width: 50vw;
-	min-height: 50vh;
+	/* min-height: 40vh; */
+	margin-bottom: 20px;
+	padding-bottom: 20px;
 	background-color: white;
 	margin-top: 5vh;
+	padding: 10px;
+	border-radius: 10px;
+}
+.user__about {
+	width: 50vw;
+	padding: 20px 20px;
+	box-sizing: border-box;
+	background-color: white;
+	border-radius: 10px;
+}
+.user__header {
+	width: 50vw;
+	display: flex;
+	flex-direction: column;
 }
 .user__banner {
 	width: 100%;
@@ -45,22 +60,57 @@
 	align-items: center;
 	justify-content: flex-end;
 	color: #0a66c2;
+	flex-wrap: nowrap;
+}
+.user__following > h5 {
+	font-size: 13px;
 }
 .user__tags {
+	margin-top: 8px;
 	display: flex;
+	flex: 0.8;
 	flex-wrap: wrap;
 }
 .user__fans {
 	display: flex;
-	justify-content: space-between;
+	justify-content: flex-end;
+	/* margin-top: 10px; */
 }
 .user__tag {
 	padding: 4px 7px;
-	margin: 0 5px;
+	margin-right: 10px;
 	margin-bottom: 5px;
 	border-radius: 5px;
 	background-color: #f4f4f4;
 }
 .user__tag > p {
 	font-size: 12px;
+}
+.user__posts {
+	margin-top: 10px;
+	padding: 20px;
+	background-color: #fff;
+}
+.bookmark {
+	/* padding: 10px; */
+	border-radius: 10px;
+	margin-top: 10px;
+	width: 22vw;
+}
+.bookmark__image {
+	width: 97%;
+	border-radius: 10px;
+	height: 40vh;
+	/* object-fit: cover; */
+}
+.bookmark__message {
+	padding: 8px 10px;
+	padding-bottom: 12px;
+	background-color: #ebebeb;
+	/* height: 10vh; */
+	border-radius: 0 0 10px 10px;
+}
+.bookmark__message > h3 {
+	/* font-size: 15px; */
+	padding-bottom: 5px;
 }
