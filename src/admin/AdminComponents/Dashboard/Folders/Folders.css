@@ -1,3 +1,9 @@
+.users {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
 .folder__cards {
   margin: 1rem 0;
   display: grid;
