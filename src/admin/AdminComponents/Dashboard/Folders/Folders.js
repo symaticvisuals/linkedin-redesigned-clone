@@ -1,52 +1,30 @@
 import React from "react";
 import "./Folders.css";
 
-import { RiFoldersFill } from "react-icons/ri";
-import { BiDotsVertical } from "react-icons/bi";
+import { FaUserCircle } from "react-icons/fa";
+import { useState } from "react";
 
 function Folders() {
+  const [active, isActive] = useState(true);
+
   return (
     <div className="Folders">
-      <h2>My Folders</h2>
+      <h2>Users</h2>
       <div className="folder__cards">
         <div className="folder__card">
           <div className="folder__icons">
-            <RiFoldersFill className="folder__icon blue" />
-            <BiDotsVertical className="folder__options" />
+            <FaUserCircle className="folder__icon blue" />
+            <button
+              active={active}
+              onClick={() => isActive(!active)}
+              className="activate__deactivate"
+            >
+              {active ? "Yes" : "No"}
+            </button>
           </div>
           <div className="folder__details">
-            <h4 className="blue">Design</h4>
-            <p>15 files</p>
-          </div>
-        </div>
-        <div className="folder__card">
-          <div className="folder__icons">
-            <RiFoldersFill className="folder__icon blue" />
-            <BiDotsVertical className="folder__options" />
-          </div>
-          <div className="folder__details">
-            <h4 className="blue">Design</h4>
-            <p>15 files</p>
-          </div>
-        </div>
-        <div className="folder__card">
-          <div className="folder__icons">
-            <RiFoldersFill className="folder__icon blue" />
-            <BiDotsVertical className="folder__options" />
-          </div>
-          <div className="folder__details">
-            <h4 className="blue">Design</h4>
-            <p>15 files</p>
-          </div>
-        </div>
-        <div className="folder__card">
-          <div className="folder__icons">
-            <RiFoldersFill className="folder__icon blue" />
-            <BiDotsVertical className="folder__options" />
-          </div>
-          <div className="folder__details">
-            <h4 className="blue">Design</h4>
-            <p>15 files</p>
+            <h4 className="blue">Name</h4>
+            <p>@username</p>
           </div>
         </div>
       </div>
