@@ -80,7 +80,7 @@ function Feed() {
 									multiple
 									id='tags-outlined'
 									options={tags}
-									getOptionLabel={(option) => option.title}
+									getOptionLabel={(option) => option}
 									defaultValue={[tags[2]]}
 									filterSelectedOptions
 									onChange={(e, value) => {

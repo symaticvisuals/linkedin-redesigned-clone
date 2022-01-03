@@ -6,6 +6,7 @@ function InputOption({ Icon, color, title, input, postTags }) {
 	const axiosConfig = {
 		withCredentials: true,
 	};
+
 	const sendPost = () => {
 		axios
 			.post(
@@ -22,6 +23,8 @@ function InputOption({ Icon, color, title, input, postTags }) {
 			.catch((err) => {
 				console.log(err);
 			});
+		console.log("message:", input);
+		console.log("tags:", postTags);
 	};
 	return (
 		<div className={title === "Send" ? "inputOptionSend" : "inputOption"}>

@@ -1,0 +1,66 @@
+.user {
+	width: 50vw;
+	min-height: 50vh;
+	background-color: white;
+	margin-top: 5vh;
+}
+.user__banner {
+	width: 100%;
+	height: 30vh;
+	background-image: url("https://media-exp1.licdn.com/dms/image/C4E16AQFKxZ_CSCw8vQ/profile-displaybackgroundimage-shrink_350_1400/0/1639078181648?e=1646870400&v=beta&t=9Sr3V1v4sCQeUFSUEJOTczMKOrFJ9doshCp75z5mwCw");
+	background-size: cover;
+	background-position: center;
+	background-repeat: no-repeat;
+	border-radius: 10px;
+}
+.user__avatar {
+	display: flex;
+	justify-content: space-between;
+}
+#user__avatar {
+	margin-top: -12vh;
+	margin-left: 30px;
+	border: 4px solid white;
+	width: 170px;
+	height: 170px;
+}
+.container__user {
+	display: flex;
+	justify-content: space-between;
+	align-items: flex-start;
+}
+.user__avatarDetails {
+	margin-top: 10px;
+	margin-right: 30px;
+	text-align: right;
+}
+.user__avatarDetails > h3 {
+	font-size: 20px;
+}
+.user__avatarDetails > p {
+	font-size: 15px;
+}
+.user__following {
+	display: flex;
+	align-items: center;
+	justify-content: flex-end;
+	color: #0a66c2;
+}
+.user__tags {
+	display: flex;
+	flex-wrap: wrap;
+}
+.user__fans {
+	display: flex;
+	justify-content: space-between;
+}
+.user__tag {
+	padding: 4px 7px;
+	margin: 0 5px;
+	margin-bottom: 5px;
+	border-radius: 5px;
+	background-color: #f4f4f4;
+}
+.user__tag > p {
+	font-size: 12px;
+}
