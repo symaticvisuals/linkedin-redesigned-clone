@@ -3,13 +3,17 @@ import "./Folders.css";
 
 import { FaUserCircle } from "react-icons/fa";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 function Folders() {
   const [active, isActive] = useState(true);
 
   return (
     <div className="Folders">
-      <h2>Users</h2>
+      <div className="users">
+        <h2>Users</h2>
+        <Link to="/admin-users" className="blue">See all users</Link>
+      </div>
       <div className="folder__cards">
         <div className="folder__card">
           <div className="folder__icons">
