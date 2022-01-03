@@ -2,21 +2,22 @@ import React, { useEffect } from "react";
 import "./Feed.css";
 import InsertPhotoRoundedIcon from "@material-ui/icons/InsertPhotoRounded";
 import MovieCreationRoundedIcon from "@material-ui/icons/MovieCreationRounded";
-import WorkRoundedIcon from "@material-ui/icons/WorkRounded";
-import AssignmentRoundedIcon from "@material-ui/icons/AssignmentRounded";
-import { Avatar, Divider, TextField } from "@material-ui/core";
+
+import SendRoundedIcon from "@material-ui/icons/SendRounded";
+import { Avatar, TextField } from "@material-ui/core";
 import InputOption from "../InputOption/InputOption";
 import Post from "../Post/Post";
 import axios from "axios";
 import { getApi } from "../../utils/apis";
 
 import Autocomplete from "@material-ui/lab/Autocomplete";
-import Cookies from "js-cookie";
+
 import tags from "../../data/tags";
 // import { posts } from "../../data/posts";
 
 function Feed() {
 	const [input, setInput] = React.useState("");
+	const [count, setCount] = React.useState(0);
 	const [posts, setPosts] = React.useState([]);
 	const [postTags, setPostTags] = React.useState([]);
 	const getAllPosts = () => {
@@ -38,25 +39,22 @@ function Feed() {
 			});
 	};
 	useEffect(() => {
+		if (count === 0) {
+			getAllPosts();
+			setCount(1);
+		}
 		const timer = setTimeout(() => {
 			getAllPosts();
 		}, 60000);
 		return () => clearTimeout(timer);
-	}, [posts]);
+	}, [posts, count]);
 
 	//FIXME: Fix : This is not working
-
-	const sendPost = (e) => {
-		e.preventDefault();
-
-		setInput("");
-	};
 
 	const options = [
 		{ Icon: InsertPhotoRoundedIcon, color: "#70B5F9", title: "Photo" },
 		{ Icon: MovieCreationRoundedIcon, color: "#FFC107", title: "Video" },
-		{ Icon: WorkRoundedIcon, color: "#F44336", title: "Job" },
-		{ Icon: AssignmentRoundedIcon, color: "#FF9800", title: "Write Article" },
+		{ Icon: SendRoundedIcon, color: "#fff", title: "Send" },
 	];
 
 	return (
@@ -77,40 +75,42 @@ function Feed() {
 							/>
 						</div>
 						<div className='feed__tags'>
-							<Autocomplete
-								multiple
-								id='tags-outlined'
-								options={tags}
-								getOptionLabel={(option) => option.title}
-								defaultValue={[tags[2]]}
-								filterSelectedOptions
-								onChange={(e) => {}}
-								renderInput={(params) => (
-									<TextField
-										{...params}
-										style={{ borderBottom: 0 }}
-										classes={{
-											root: "feed__tags__input",
-										}}
-										placeholder='Tags'
+							<div className='feed__autocomplete'>
+								<Autocomplete
+									multiple
+									id='tags-outlined'
+									options={tags}
+									getOptionLabel={(option) => option.title}
+									defaultValue={[tags[2]]}
+									filterSelectedOptions
+									onChange={(e, value) => {
+										setPostTags(value);
+										console.log(postTags);
+									}}
+									openOnFocus={true}
+									renderInput={(params) => (
+										<TextField
+											{...params}
+											placeholder='Tags'
+											fullWidth='true'
+										/>
+									)}
+								/>
+							</div>
+							<div className='feed__inputOptions'>
+								{options.map((option) => (
+									<InputOption
+										key={option.Icon}
+										Icon={option.Icon}
+										color={option.color}
+										title={option.title}
+										input={input}
+										postTags={postTags}
 									/>
-								)}
-							/>
+								))}
+							</div>
 						</div>
 						{/* <Divider /> */}
-						<div className='feed__inputOptions'>
-							{options.map((option) => (
-								<InputOption
-									key={option.Icon}
-									Icon={option.Icon}
-									color={option.color}
-									title={option.title}
-								/>
-							))}
-							<button type='submit' className='feed__button' onClick={sendPost}>
-								Publish
-							</button>
-						</div>
 					</form>
 				</div>
 			</div>
@@ -128,13 +128,15 @@ function Feed() {
 							likes,
 							comments,
 							image,
+							_id,
 						},
 						key
 					) => (
 						// TODO: Add the post by name and profile pic
 
 						<Post
-							key={key}
+							key={message}
+							id={_id}
 							message={message}
 							number_of_likes={number_of_likes}
 							number_of_comments={number_of_comments}
