@@ -10,6 +10,7 @@ import SendRoundedIcon from "@material-ui/icons/SendRounded";
 
 import axios from "axios";
 import { getApi } from "../../utils/apis";
+import { useSelector } from "react-redux";
 function Post({
 	message,
 	number_of_likes,
@@ -23,7 +24,18 @@ function Post({
 	comments,
 	image,
 }) {
-	const [like, setLike] = React.useState(false);
+	const userId = useSelector((state) => state.user.user._id);
+	const checkLike = () => {
+		if (likes.filter((like) => like.likeBy._id === userId).length > 0) {
+			console.log("true");
+			return true;
+		} else {
+			console.log("false");
+			return false;
+		}
+	};
+	const [like, setLike] = React.useState(checkLike(likes));
+
 	const [comment, setComment] = React.useState(false);
 	const [bookmark, setBookmark] = React.useState(false);
 	const [commentText, setCommentText] = React.useState("");
@@ -37,6 +49,7 @@ function Post({
 			.put(getApi(`api/user/posts/likePost/${id}`), {}, axiosConfig)
 			.then((res) => {
 				console.log(res);
+				console.log(likes.length);
 			})
 			.catch((err) => {
 				console.log(err);
@@ -78,32 +91,26 @@ function Post({
 			<div
 				className='post__imageSection'
 				style={{
-					background:
-						"url(https://designshack.net/wp-content/uploads/ADL-Clean-Instagram-Post-Templates.jpg)",
+					background: `url(https://designshack.net/wp-content/uploads/ADL-Clean-Instagram-Post-Templates.jpg)`,
+					// background: `url(https://linkedin-redesigned-server.herokuapp.com/images/${image})))`,
 					height: "30vh",
 					backgroundSize: "cover",
 				}}
 			>
-				<Avatar src='' className='post__avatar' />
+				<Avatar
+					src={`https://linkedin-redesigned-server.herokuapp.com/images/${postBy.profilePicture}`}
+					className='post__avatar'
+				/>
 			</div>
 			<div className='post__contentSection'>
-				<p>
-					Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequatur
-					soluta quos mollitia odit officiis quisquam ullam molestias sapiente,
-					eum pariatur provident id ut explicabo excepturi consectetur beatae
-					dicta praesentium at!
-				</p>
+				<p>{message}</p>
 			</div>
 			<div className='post__tags'>
-				<div className='post__tag'>
-					<p>Tags</p>
-				</div>
-				<div className='post__tag'>
-					<p>Tags</p>
-				</div>
-				<div className='post__tag'>
-					<p>Tags</p>
-				</div>
+				{tags.map((tag) => (
+					<div className='post__tag'>
+						<p>{tag}</p>
+					</div>
+				))}
 			</div>
 			<div className='post__interactions'>
 				<div className='post__likecomm'>

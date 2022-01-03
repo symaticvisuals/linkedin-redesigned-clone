@@ -10,36 +10,34 @@ import SearchOutlinedIcon from "@material-ui/icons/SearchOutlined";
 import ChatRoundedIcon from "@material-ui/icons/ChatRounded";
 import axios from "axios";
 import HeaderOption from "../HeaderOption/HeaderOption";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 
 import { getApi } from "../../utils/apis";
+import Cookies from "js-cookie";
+import { getUser, login } from "../../features/userSlice";
 
 function Header() {
+	const dispatch = useDispatch();
 	const handleLogout = (e) => {
 		e.preventDefault();
 		let axiosConfig = {
 			withCredentials: true,
 		};
 
-		// dispatch(getUser());
-		// axios({
-		// 	method: "get",
-		// 	url: getApi("api/user/myProfile"),
-		// })
-		// 	.then((res) => {
-		// 		dispatch(logout());
-		// 		console.log(res);
-		// 		Cookies.remove("access_token");
-		// 	})
-		// 	.catch((err) => {
-		// 		alert("Internal Server Error");
-		// 	});
-
 		axios
 			.get(getApi("api/user/logout"), axiosConfig)
 			.then((res) => {
 				console.log(res);
+				Cookies.remove("jwt");
+				Cookies.remove("user");
+				dispatch(
+					login({
+						userJwt: "",
+						isLoggedIn: false,
+					})
+				);
+				dispatch(getUser({}));
 			})
 			.catch((err) => {
 				alert(err);
@@ -62,17 +60,19 @@ function Header() {
 						</div>
 					</div>
 					<div className='header__right'>
-						<HeaderOption Icon={HomeRoundedIcon} title='Home' />
-						<HeaderOption Icon={PeopleRoundedIcon} title='My Network' />
-						<HeaderOption Icon={WorkRoundedIcon} title='Jobs' />
-						<HeaderOption Icon={ChatRoundedIcon} title='Messaging' />
+						<HeaderOption Icon={HomeRoundedIcon} title='Home' link='' />
+						<HeaderOption Icon={PeopleRoundedIcon} title='My Network' link='' />
+						<HeaderOption Icon={WorkRoundedIcon} title='Jobs' link='' />
+						<HeaderOption Icon={ChatRoundedIcon} title='Messaging' link='' />
 						<HeaderOption
 							Icon={NotificationsRoundedIcon}
 							title='Notifications'
+							link=''
 						/>
 						<HeaderOption
 							avatar='https://media-exp1.licdn.com/dms/image/C4E03AQHRjLPA2E9-Gg/profile-displayphoto-shrink_400_400/0/1616477273357?e=1635379200&v=beta&t=uyHlw8T8hcTuHBfRKVe1aYnxIg_eQMAvikk8_UqglZY'
 							title='Deepanshu'
+							link='/user'
 						/>
 						<Link to='/'>
 							<button className='loginHeader__button' onClick={handleLogout}>

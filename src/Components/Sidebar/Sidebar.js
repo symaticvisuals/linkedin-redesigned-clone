@@ -33,8 +33,8 @@ function Sidebar(user) {
 							: ""
 					}
 					style={{
-						height: "50px",
-						width: "50px",
+						height: "60px",
+						width: "60px",
 					}}
 					className='sidebar__avatar'
 				/>
