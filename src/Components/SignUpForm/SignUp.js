@@ -12,21 +12,27 @@ function SignUp() {
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
+		const axiosConfig = {
+			withCredentials: true,
+		};
 		console.log(registerUser);
-		axios({
-			method: "post",
-			url: "http://localhost:3001/api/user/register",
+		axios
+			.post(
+				{
+					url: "http://localhost:3001/api/user/register",
 
-			data: {
-				email: `${registerUser.email}`,
-				firstName: `${registerUser.fname}`,
-				lastName: `${registerUser.lname}`,
-				designation: "student",
-				education: "bachelor",
-				userName: `${registerUser.username}`,
-				password: `${registerUser.password}`,
-			},
-		})
+					data: {
+						email: `${registerUser.email}`,
+						firstName: `${registerUser.fname}`,
+						lastName: `${registerUser.lname}`,
+						designation: "student",
+						education: "bachelor",
+						userName: `${registerUser.username}`,
+						password: `${registerUser.password}`,
+					},
+				},
+				axiosConfig
+			)
 			.then((res) => {
 				console.log(res);
 			})

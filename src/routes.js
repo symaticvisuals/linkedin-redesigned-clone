@@ -6,6 +6,7 @@ import Login from "./Components/LoginForm/Login";
 
 import Profile from "./Components/Profile/Profile";
 import SignUp from "./Components/SignUpForm/SignUp";
+import User from "./Components/User/User";
 
 function Routes() {
 	const loginStatus = useSelector((state) => state.user.login);
@@ -20,6 +21,7 @@ function Routes() {
 			) : (
 				<div>
 					<Route path='/' exact component={Profile} />
+					<Route exact path='/user' component={User} />
 				</div>
 			)}
 		</Switch>

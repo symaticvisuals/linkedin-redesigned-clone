@@ -1,24 +1,16 @@
 const tags = [
-	{
-		title: "Food",
-	},
-	{
-		title: "Travel",
-	},
-	{
-		title: "Technology",
-	},
-	{
-		title: "Sports",
-	},
-	{
-		title: "Music",
-	},
-	{
-		title: "Fashion",
-	},
-	{
-		title: "Politics",
-	},
+	"Food",
+
+	"Travel",
+
+	"Technology",
+
+	"Sports",
+
+	"Music",
+
+	"Fashion",
+	"Politics",
+	"Cooking",
 ];
 export default tags;

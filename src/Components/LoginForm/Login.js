@@ -33,7 +33,8 @@ function Login() {
 			.then((res) => {
 				dispatch(getUser(res.data.data.user));
 				dispatch(login({ userJwt: res.data.data.jwt, isLoggedIn: true }));
-				Cookies.set("access_token", res.data.data.jwt);
+				Cookies.set("jwt", res.data.data.jwt);
+				Cookies.set("user", JSON.stringify(res.data.data.user));
 				console.log(res);
 				console.log(loginDetails);
 			})
