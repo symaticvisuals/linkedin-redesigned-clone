@@ -1,43 +1,81 @@
-import { Avatar } from "@material-ui/core";
-import React from "react";
+import { Avatar, Dialog } from "@material-ui/core";
+import React, { createContext } from "react";
 import Widgets from "../Widgets/Widgets";
 import PeopleRoundedIcon from "@material-ui/icons/PeopleRounded";
 import "./User.css";
 
-import { useSelector } from "react-redux";
 import axios from "axios";
 import { getApi } from "../../utils/apis";
 // import "~slick-carousel/slick/slick.css";
 // import "~slick-carousel/slick/slick-theme.css";
+import EditRoundedIcon from "@material-ui/icons/EditRounded";
 import { useEffect } from "react";
 import Slider from "react-slick";
 
 import News from "../News/News";
-function User({ person }) {
+import { useLocation } from "react-router-dom";
+import EditProfile from "../EditProfile/EditProfile";
+import { useSelector } from "react-redux";
+import { useHistory } from "react-router-dom";
+function useQuery() {
+	const { search } = useLocation();
+
+	return React.useMemo(() => new URLSearchParams(search), [search]);
+}
+const DialogUpdate = createContext();
+function User() {
+	const query = useQuery();
+	const searchedUser = query.get("profile");
+	const user = useSelector((state) => state.user.user._id);
 	const [profile, setProfile] = React.useState({});
 	const [interestFilters, setInterestFilters] = React.useState([]);
 	const [bookmarks, setBookmarks] = React.useState([]);
+	const [details, setDetails] = React.useState({});
+	const [open, setOpen] = React.useState(false);
 	const axiosConfig = {
 		withCredentials: true,
 	};
+	const handleClickOpen = () => {
+		setOpen(true);
+	};
+	const handleClose = () => {
+		setOpen(false);
+	};
 	const fetchUser = () => {
-		axios
-			.get(getApi(`api/user/myProfile`), axiosConfig)
-			.then((res) => {
-				setProfile(res.data.data.section);
-				setInterestFilters(res.data.data.intrestFilters);
-				if (res.data.data.number_of_postBookmarks > 0) {
-					setBookmarks(res.data.data.post_bookmarks);
-				}
-			})
-			.catch((err) => {
-				console.log(err);
-			});
+		if (searchedUser !== null) {
+			axios
+				.get(getApi(`api/user/search/byUserId/${searchedUser}`), axiosConfig)
+				.then((res) => {
+					setProfile(res.data.data.section);
+					setInterestFilters(res.data.data.intrestFilters);
+					if (res.data.data.number_of_postBookmarks > 0) {
+						setBookmarks(res.data.data.post_bookmarks);
+					}
+					setDetails(res.data.data);
+				})
+				.catch((err) => {
+					console.log(err);
+				});
+		} else {
+			axios
+				.get(getApi(`api/user/myProfile`), axiosConfig)
+				.then((res) => {
+					setProfile(res.data.data.section);
+					setInterestFilters(res.data.data.intrestFilters);
+					if (res.data.data.number_of_postBookmarks > 0) {
+						setBookmarks(res.data.data.post_bookmarks);
+					}
+					setDetails(res.data.data);
+				})
+				.catch((err) => {
+					console.log(err);
+				});
+		}
 	};
 	useEffect(() => {
 		fetchUser();
 		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, []);
+	}, [searchedUser]);
 
 	const settings = {
 		// dots: true,
@@ -46,6 +84,8 @@ function User({ person }) {
 		slidesToShow: 2,
 		slidesToScroll: 3,
 	};
+	const history = useHistory();
+
 	return (
 		<div className='container__user'>
 			<div className='user__header'>
@@ -58,7 +98,8 @@ function User({ person }) {
 								id='user__avatar'
 							></Avatar>
 							<div className='user__avatarDetails'>
-								<h3>Deepanshu Goel</h3>
+								{console.log(searchedUser)}
+								<h3>{details.firstName + " " + details.lastName}</h3>
 								<p>
 									Lorem ipsum dolor sit amet consectetur adipisicing elit.
 									Voluptas nostrum quidem suscipit nobis dolor praesentium.
@@ -74,8 +115,34 @@ function User({ person }) {
 					</div>
 				</div>
 				<div className='user__about'>
-					<h3>About Me</h3>
-					<p>{profile.intro}</p>
+					<div
+						className=''
+						style={{
+							display: "flex",
+							alignItems: "center",
+							justifyContent: "space-between",
+						}}
+					>
+						<h3>About Me</h3>
+
+						{searchedUser === user || history.location.pathname === "/user" ? (
+							<div className='edit__icon' onClick={handleClickOpen}>
+								<EditRoundedIcon id='edit' />
+								<Dialog
+									fullWidth={true}
+									maxWidth='sm'
+									open={open}
+									onClose={handleClose}
+									aria-labelledby='max-width-dialog-title'
+								>
+									<DialogUpdate.Provider value={{ open, setOpen }}>
+										<EditProfile />
+									</DialogUpdate.Provider>
+								</Dialog>
+							</div>
+						) : null}
+					</div>
+					<p>{profile && profile.intro}</p>
 					<h3 style={{ marginTop: "15px" }}>Interests</h3>
 					<div className='user__tags'>
 						{interestFilters.map((tag) => {
@@ -123,4 +190,4 @@ function User({ person }) {
 	);
 }
 
-export default User;
+export { User, DialogUpdate };

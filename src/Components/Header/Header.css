@@ -44,9 +44,27 @@
 .searchedUsers {
 	position: absolute;
 	/* height: 5vh; */
-	width: 100%;
+	width: 42%;
 	padding: 12px;
 	box-sizing: border-box;
 	background-color: white;
 	border-radius: 0 0 10px 10px;
+}
+.searchedUsers:hover {
+	background-color: #efefef;
+	cursor: pointer;
+}
+.searchedUser__result {
+	display: flex;
+	align-items: center;
+}
+
+.searchResult__name > h5 {
+	margin-left: 10px;
+	text-transform: capitalize;
+	font-size: 14px;
+}
+.searchResult__name > p {
+	font-size: 12px;
+	margin-left: 10px;
 }

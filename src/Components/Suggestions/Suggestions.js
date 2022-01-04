@@ -33,7 +33,9 @@ function Suggestions({ user }, id) {
 					src={`https://linkedin-redesigned-server.herokuapp.com/images/${user.profilePicture}`}
 				/>
 				<div className='user__details'>
-					<h6>{user.lastName}</h6>
+					<h6 style={{ textTransform: "capitalize" }}>
+						{user.firstName + " " + user.lastName}
+					</h6>
 					<p>{user.designation}</p>
 				</div>
 			</div>
