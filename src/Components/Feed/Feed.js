@@ -54,7 +54,7 @@ function Feed() {
 
 	const options = [
 		{ Icon: InsertPhotoRoundedIcon, color: "#70B5F9", title: "Photo" },
-		{ Icon: MovieCreationRoundedIcon, color: "#FFC107", title: "Video" },
+		// { Icon: MovieCreationRoundedIcon, color: "#FFC107", title: "Video" },
 		{ Icon: SendRoundedIcon, color: "#fff", title: "Send" },
 	];
 
