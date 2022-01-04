@@ -7,13 +7,13 @@
 .folder__cards {
   margin: 1rem 0;
   display: grid;
-  grid-template-columns: repeat(auto-fit, 175px);
-  grid-auto-rows: 180px;
+  grid-template-columns: repeat(auto-fit, 200px);
+  grid-auto-rows: 150px;
   gap: 20px;
 }
 .folder__card {
   height: 100px;
-  width: 140px;
+  /* width: 165px; */
   display: flex;
   justify-content: space-between;
   flex-direction: column;
@@ -33,6 +33,11 @@
 .folder__options {
   font-size: 1.5rem;
   cursor: pointer;
+}
+.folder__icons img {
+  height: 40px;
+  width: 40px;
+  border-radius: 20px;
 }
 
 .activate__deactivate {

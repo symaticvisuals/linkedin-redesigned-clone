@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import { getUser, login } from "../../features/userSlice";
 import logo from "../../images/logo.png";
@@ -9,10 +9,12 @@ import { getApi } from "../../utils/apis";
 
 import Cookies from "js-cookie";
 import axios from "axios";
+import { useHistory } from "react-router-dom";
 function Login() {
 	const [loginUser, setLogin] = useState({});
 	const dispatch = useDispatch();
-	const loginDetails = useSelector((state) => state.user.login);
+
+	let history = useHistory();
 	const handleSubmit = (e) => {
 		e.preventDefault();
 		console.log(loginUser);
@@ -36,7 +38,7 @@ function Login() {
 				Cookies.set("jwt", res.data.data.jwt);
 				Cookies.set("user", JSON.stringify(res.data.data.user));
 				console.log(res);
-				console.log(loginDetails);
+				history.push("/");
 			})
 			.catch((err) => {
 				console.log(err);

@@ -27,13 +27,12 @@ function Post({
 	const userId = useSelector((state) => state.user.user._id);
 	const checkLike = () => {
 		if (likes.filter((like) => like.likeBy._id === userId).length > 0) {
-			console.log("true");
 			return true;
 		} else {
-			console.log("false");
 			return false;
 		}
 	};
+	const [updatedComments, setUpdatedComments] = React.useState(comments);
 	const [like, setLike] = React.useState(checkLike(likes));
 
 	const [comment, setComment] = React.useState(false);
@@ -49,7 +48,6 @@ function Post({
 			.put(getApi(`api/user/posts/likePost/${id}`), {}, axiosConfig)
 			.then((res) => {
 				console.log(res);
-				console.log(likes.length);
 			})
 			.catch((err) => {
 				console.log(err);
@@ -57,10 +55,17 @@ function Post({
 	};
 	const handleComment = () => {
 		setComment(!comment);
-		console.log(`Comment ${id}`);
-		console.log(comments);
 	};
 	const handleBookmark = () => {
+		axios
+			.put(getApi(`api/user/posts/bookmark/${id}`), {}, axiosConfig)
+			.then((res) => {
+				console.log(res);
+				setUpdatedComments(res.data.data.comments.comments);
+			})
+			.catch((err) => {
+				console.log(err);
+			});
 		setBookmark(!bookmark);
 	};
 
@@ -78,6 +83,8 @@ function Post({
 				)
 				.then((res) => {
 					console.log(res);
+					setUpdatedComments(res.data.data.comments.comments);
+					console.log(res.data.data.comments.comments);
 					setCommentText("");
 				})
 				.catch((err) => {
@@ -171,7 +178,7 @@ function Post({
 							onClick={addComment}
 						/>
 					</div>
-					{comments.map((comment, key) => (
+					{updatedComments.map((comment, key) => (
 						<div className='post__comment'>
 							<div className='comment__avatar'>
 								<Avatar

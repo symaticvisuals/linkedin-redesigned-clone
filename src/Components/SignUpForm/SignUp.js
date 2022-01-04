@@ -3,12 +3,14 @@ import "./SignUp.css";
 
 import { Link } from "react-router-dom";
 import axios from "axios";
-import { useDispatch } from "react-redux";
-import { login, register } from "../../features/userSlice";
+
+import { useHistory } from "react-router-dom";
+import { getApi } from "../../utils/apis";
 
 function SignUp() {
 	const [registerUser, setRegister] = useState({});
-	const dispatch = useDispatch();
+
+	let history = useHistory();
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
@@ -18,29 +20,27 @@ function SignUp() {
 		console.log(registerUser);
 		axios
 			.post(
-				{
-					url: "http://localhost:3001/api/user/register",
+				getApi("api/user/register"),
 
-					data: {
-						email: `${registerUser.email}`,
-						firstName: `${registerUser.fname}`,
-						lastName: `${registerUser.lname}`,
-						designation: "student",
-						education: "bachelor",
-						userName: `${registerUser.username}`,
-						password: `${registerUser.password}`,
-					},
+				{
+					email: `${registerUser.email}`,
+					firstName: `${registerUser.fname}`,
+					lastName: `${registerUser.lname}`,
+					designation: "Student",
+					education: "bachelor",
+					userName: `${registerUser.username}`,
+					password: `${registerUser.password}`,
 				},
+
 				axiosConfig
 			)
 			.then((res) => {
-				console.log(res);
+				alert("Registered Successfully");
+				history.push("/login");
 			})
 			.catch((err) => {
 				console.log(err);
 			});
-		dispatch(register(registerUser));
-		dispatch(login({ isLoggedIn: true }));
 	};
 
 	return (

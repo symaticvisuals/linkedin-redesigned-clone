@@ -42,6 +42,7 @@ function Feed() {
 		if (count === 0) {
 			getAllPosts();
 			setCount(1);
+			console.log(posts);
 		}
 		const timer = setTimeout(() => {
 			getAllPosts();
@@ -85,7 +86,6 @@ function Feed() {
 									filterSelectedOptions
 									onChange={(e, value) => {
 										setPostTags(value);
-										console.log(postTags);
 									}}
 									openOnFocus={true}
 									renderInput={(params) => (

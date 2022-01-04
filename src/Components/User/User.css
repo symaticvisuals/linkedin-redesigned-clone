@@ -114,3 +114,15 @@
 	/* font-size: 15px; */
 	padding-bottom: 5px;
 }
+
+.edit__icon {
+	/* padding: 20px; */
+	cursor: pointer;
+	border-radius: 30px;
+	background-color: white;
+	width: 2vw;
+	margin: 10px;
+}
+#edit {
+	width: 25px;
+}

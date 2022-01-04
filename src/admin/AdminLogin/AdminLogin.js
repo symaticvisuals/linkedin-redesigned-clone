@@ -1,16 +1,19 @@
 import React, { useState } from "react";
+import { useHistory } from "react-router-dom";
 import "./AdminLogin.css";
 
 import logo from "../../images/logo.png";
 import axios from "axios";
 import { getApi } from "../../utils/apis";
-import { login } from "../../features/adminSlice";
+import { adminLogin } from "../../features/adminSlice";
 import { useDispatch } from "react-redux";
+import Cookies from "js-cookie";
 
 function AdminLogin() {
 	const [loginAdmin, setLogin] = useState({});
 	// const loginDetails = useSelector((state) => state.admin);
 	// TODO: useSelector hook
+	const history = useHistory();
 	const dispatch = useDispatch();
 	const handleSubmit = (e) => {
 		e.preventDefault();
@@ -32,17 +35,24 @@ function AdminLogin() {
 			.then((res) => {
 				console.log(res);
 				dispatch(
-					login({
+					adminLogin({
 						userName: res.data.data.userName,
 						id: res.data.data.id,
 						jwtToken: res.data.data.jwtToken,
 						isLoggedIn: true,
 					})
 				);
+				Cookies.set("jwtToken", res.data.data.jwtToken);
+				Cookies.set("admin", JSON.stringify(res.data.data.userName));
 			})
 			.catch((err) => {
 				console.log(err);
 			});
+
+		history.push({
+			pathname: "/admin",
+			state: { userName: loginAdmin.userName },
+		});
 	};
 
 	return (
@@ -75,13 +85,12 @@ function AdminLogin() {
 						}
 						required
 					/>
-					<button
-						type='submit'
-						onClick={handleSubmit}
-						className='submit-button'
-					>
+					<button onClick={handleSubmit} className='submit-button'>
 						Login
 					</button>
+					{/* <Link to="/admin" onClick={handleSubmit} className="submit-button">
+            Login
+          </Link> */}
 				</form>
 				<div className='admin__signup__button'>
 					<p>
