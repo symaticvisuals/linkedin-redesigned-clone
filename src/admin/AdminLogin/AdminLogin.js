@@ -9,8 +9,7 @@ import { useDispatch } from "react-redux";
 
 function AdminLogin() {
 	const [loginAdmin, setLogin] = useState({});
-	// const loginDetails = useSelector((state) => state.admin);
-	// TODO: useSelector hook
+
 	const dispatch = useDispatch();
 	const handleSubmit = (e) => {
 		e.preventDefault();

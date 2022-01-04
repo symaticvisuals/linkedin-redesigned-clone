@@ -41,3 +41,12 @@
 	justify-content: space-around;
 	align-items: center;
 }
+.searchedUsers {
+	position: absolute;
+	/* height: 5vh; */
+	width: 100%;
+	padding: 12px;
+	box-sizing: border-box;
+	background-color: white;
+	border-radius: 0 0 10px 10px;
+}

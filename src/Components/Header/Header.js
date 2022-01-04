@@ -16,9 +16,51 @@ import { Link } from "react-router-dom";
 import { getApi } from "../../utils/apis";
 import Cookies from "js-cookie";
 import { getUser, login } from "../../features/userSlice";
+import { useEffect } from "react";
+import { Avatar } from "@material-ui/core";
 
 function Header() {
+	const axiosConfig = {
+		withCredentials: true,
+	};
 	const dispatch = useDispatch();
+	const [search, setSearch] = React.useState("");
+	const [searchResults, setSearchResults] = React.useState([]);
+	const [trigger, setTrigger] = React.useState(false);
+	const [resultbar, setResultbar] = React.useState(false);
+	const searchResult = () => {
+		if (search !== "") {
+			axios
+				.get(getApi(`api/user/search/byUserName/${search}`), axiosConfig)
+				.then((res) => {
+					console.log(res.data);
+					if (res.data.success === false) {
+						setTrigger(false);
+					} else if (res.data.success) {
+						setTrigger(true);
+						setSearchResults(res.data.data);
+					}
+				})
+				.catch((err) => {
+					console.log(err);
+				});
+		}
+	};
+	useEffect(() => {
+		const timer = setTimeout(() => {
+			searchResult();
+			if (search !== "") {
+				setResultbar(true);
+			}
+			if (search === "") {
+				setResultbar(false);
+			}
+		}, 2000);
+		return () => {
+			clearTimeout(timer);
+			searchResult(false);
+		};
+	}, [search]);
 	const handleLogout = (e) => {
 		e.preventDefault();
 		let axiosConfig = {
@@ -55,9 +97,29 @@ function Header() {
 					</Link>
 					<div className='header__middle'>
 						<div className='header__search'>
-							<input type='text' name='' id='' />
+							<input
+								type='text'
+								name='searchBar'
+								id=''
+								onChange={(e) => {
+									setSearch(e.target.value);
+								}}
+							/>
 							<SearchOutlinedIcon />
 						</div>
+						{resultbar === true ? (
+							<div className='searchedUsers'>
+								{trigger === false ? (
+									<div className='searchedUsers__noResult'>No Result Found</div>
+								) : (
+									<div className='searchedUser__result'>
+										<Avatar
+											src={`https://linkedin-redesigned-server.herokuapp.com/images/${searchResults.profilePicture}`}
+										/>
+									</div>
+								)}
+							</div>
+						) : null}
 					</div>
 					<div className='header__right'>
 						<HeaderOption Icon={HomeRoundedIcon} title='Home' link='' />

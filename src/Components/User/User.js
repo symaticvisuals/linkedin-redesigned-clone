@@ -13,8 +13,7 @@ import { useEffect } from "react";
 import Slider from "react-slick";
 
 import News from "../News/News";
-function User() {
-	const userDetails = useSelector((state) => state.user.user);
+function User({ person }) {
 	const [profile, setProfile] = React.useState({});
 	const [interestFilters, setInterestFilters] = React.useState([]);
 	const [bookmarks, setBookmarks] = React.useState([]);
@@ -29,7 +28,6 @@ function User() {
 				setInterestFilters(res.data.data.intrestFilters);
 				if (res.data.data.number_of_postBookmarks > 0) {
 					setBookmarks(res.data.data.post_bookmarks);
-					console.log(res.data.data.post_bookmarks);
 				}
 			})
 			.catch((err) => {
@@ -51,7 +49,6 @@ function User() {
 	return (
 		<div className='container__user'>
 			<div className='user__header'>
-				{console.log(userDetails)}
 				<div className='user'>
 					<div className='user__banner'></div>
 					<div className='user__details'>

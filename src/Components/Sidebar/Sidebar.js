@@ -38,9 +38,8 @@ function Sidebar(user) {
 					}}
 					className='sidebar__avatar'
 				/>
-				{console.log()}
+
 				<div className='sidebar__designations'>
-					{console.log(user)}
 					<h2>{firstName + " " + lastName}</h2>
 					<h5>
 						UI/UX Designer .Full-Stack Developer .Open Source at @CodeForCause

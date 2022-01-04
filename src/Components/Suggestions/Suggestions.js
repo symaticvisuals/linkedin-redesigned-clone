@@ -3,8 +3,24 @@ import React from "react";
 import AddCircleOutlineIcon from "@material-ui/icons/AddCircleOutline";
 import CheckIcon from "@material-ui/icons/Check";
 import "./Suggestions.css";
+import { getApi } from "../../utils/apis";
+import axios from "axios";
 function Suggestions({ user }, id) {
 	const [follow, setFollow] = React.useState(false);
+	const followRequest = () => {
+		let axiosConfig = {
+			withCredentials: true,
+		};
+		axios
+			.put(getApi(`api/user/follow/${user._id}`), {}, axiosConfig)
+			.then((res) => {
+				console.log(res);
+				setFollow(!follow);
+			})
+			.catch((err) => {
+				console.log(err);
+			});
+	};
 	return (
 		<div className='random__user'>
 			<div className='random__details'>
@@ -17,17 +33,14 @@ function Suggestions({ user }, id) {
 					src={`https://linkedin-redesigned-server.herokuapp.com/images/${user.profilePicture}`}
 				/>
 				<div className='user__details'>
-					<h6>Deepanshu Goel</h6>
+					<h6>{user.lastName}</h6>
 					<p>{user.designation}</p>
 				</div>
 			</div>
 			{follow === false ? (
-				<AddCircleOutlineIcon
-					htmlColor='#0080b4'
-					onClick={(e) => setFollow(!follow)}
-				/>
+				<AddCircleOutlineIcon htmlColor='#0080b4' onClick={followRequest} />
 			) : (
-				<CheckIcon onClick={(e) => setFollow(!follow)} htmlColor='#0080b4' />
+				<CheckIcon htmlColor='#0080b4' onClick={followRequest} />
 			)}
 		</div>
 	);
