@@ -15,7 +15,6 @@ function Widgets() {
 			.get(getApi("api/user/getRandomUsers?limit=5&page=1"), axiosConfig)
 			.then((res) => {
 				setSuggestions(res.data.data);
-				console.log(suggestions);
 			})
 			.catch((err) => {
 				console.log(err);

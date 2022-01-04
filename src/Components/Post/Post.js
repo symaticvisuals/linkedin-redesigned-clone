@@ -27,10 +27,8 @@ function Post({
 	const userId = useSelector((state) => state.user.user._id);
 	const checkLike = () => {
 		if (likes.filter((like) => like.likeBy._id === userId).length > 0) {
-			console.log("true");
 			return true;
 		} else {
-			console.log("false");
 			return false;
 		}
 	};
@@ -49,7 +47,6 @@ function Post({
 			.put(getApi(`api/user/posts/likePost/${id}`), {}, axiosConfig)
 			.then((res) => {
 				console.log(res);
-				console.log(likes.length);
 			})
 			.catch((err) => {
 				console.log(err);
@@ -57,8 +54,6 @@ function Post({
 	};
 	const handleComment = () => {
 		setComment(!comment);
-		console.log(`Comment ${id}`);
-		console.log(comments);
 	};
 	const handleBookmark = () => {
 		setBookmark(!bookmark);

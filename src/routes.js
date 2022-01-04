@@ -7,7 +7,17 @@ import Login from "./Components/LoginForm/Login";
 import Profile from "./Components/Profile/Profile";
 import SignUp from "./Components/SignUpForm/SignUp";
 import User from "./Components/User/User";
+import { useLocation } from "react-router-dom";
+function useQuery() {
+	const { search } = useLocation();
 
+	return React.useMemo(() => new URLSearchParams(search), [search]);
+}
+function SearchUserByName() {
+	let query = useQuery();
+}
+
+function userProfiles({ user }) {}
 function Routes() {
 	const loginStatus = useSelector((state) => state.user.login);
 	return (

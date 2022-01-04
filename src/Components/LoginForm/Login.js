@@ -36,7 +36,6 @@ function Login() {
 				Cookies.set("jwt", res.data.data.jwt);
 				Cookies.set("user", JSON.stringify(res.data.data.user));
 				console.log(res);
-				console.log(loginDetails);
 			})
 			.catch((err) => {
 				console.log(err);
