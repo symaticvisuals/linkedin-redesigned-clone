@@ -1,7 +1,6 @@
 import React, { useEffect } from "react";
 import "./Feed.css";
 import InsertPhotoRoundedIcon from "@material-ui/icons/InsertPhotoRounded";
-import MovieCreationRoundedIcon from "@material-ui/icons/MovieCreationRounded";
 
 import SendRoundedIcon from "@material-ui/icons/SendRounded";
 import { Avatar, TextField } from "@material-ui/core";
