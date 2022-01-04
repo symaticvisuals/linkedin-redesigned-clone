@@ -64,7 +64,7 @@ function InputOption({ Icon, color, title, input, postTags }) {
 			) : (
 				<div className=''>
 					<form
-						action='http://localhost:3001/api/user/posts/imageUpload'
+						action='https://linkedin-redesigned-server.herokuapp.com/api/user/posts/imageUpload'
 						id='image__form'
 						name='image__form'
 						enctype='multipart/form-data'
