@@ -32,6 +32,7 @@ function Post({
 			return false;
 		}
 	};
+	const [updatedComments, setUpdatedComments] = React.useState(comments);
 	const [like, setLike] = React.useState(checkLike(likes));
 
 	const [comment, setComment] = React.useState(false);
@@ -56,6 +57,15 @@ function Post({
 		setComment(!comment);
 	};
 	const handleBookmark = () => {
+		axios
+			.put(getApi(`api/user/posts/bookmark/${id}`), {}, axiosConfig)
+			.then((res) => {
+				console.log(res);
+				setUpdatedComments(res.data.data.comments.comments);
+			})
+			.catch((err) => {
+				console.log(err);
+			});
 		setBookmark(!bookmark);
 	};
 
@@ -73,6 +83,8 @@ function Post({
 				)
 				.then((res) => {
 					console.log(res);
+					setUpdatedComments(res.data.data.comments.comments);
+					console.log(res.data.data.comments.comments);
 					setCommentText("");
 				})
 				.catch((err) => {
@@ -166,7 +178,7 @@ function Post({
 							onClick={addComment}
 						/>
 					</div>
-					{comments.map((comment, key) => (
+					{updatedComments.map((comment, key) => (
 						<div className='post__comment'>
 							<div className='comment__avatar'>
 								<Avatar

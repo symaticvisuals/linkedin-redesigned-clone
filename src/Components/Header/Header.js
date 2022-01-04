@@ -19,10 +19,18 @@ import { getUser, login } from "../../features/userSlice";
 import { useEffect } from "react";
 import { Avatar } from "@material-ui/core";
 
+import { useLocation } from "react-router-dom";
+
+function useQuery() {
+	const { search } = useLocation();
+
+	return React.useMemo(() => new URLSearchParams(search), [search]);
+}
 function Header() {
 	const axiosConfig = {
 		withCredentials: true,
 	};
+	const query = useQuery();
 	const dispatch = useDispatch();
 	const [search, setSearch] = React.useState("");
 	const [searchResults, setSearchResults] = React.useState([]);
@@ -60,6 +68,7 @@ function Header() {
 			clearTimeout(timer);
 			searchResult(false);
 		};
+		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [search]);
 	const handleLogout = (e) => {
 		e.preventDefault();
@@ -85,7 +94,9 @@ function Header() {
 				alert(err);
 			});
 	};
+
 	const loginStatus = useSelector((state) => state.user.login);
+
 	return (
 		<div>
 			{loginStatus.userJwt !== "" && loginStatus.isLoggedIn === true ? (
@@ -112,11 +123,29 @@ function Header() {
 								{trigger === false ? (
 									<div className='searchedUsers__noResult'>No Result Found</div>
 								) : (
-									<div className='searchedUser__result'>
-										<Avatar
-											src={`https://linkedin-redesigned-server.herokuapp.com/images/${searchResults.profilePicture}`}
-										/>
-									</div>
+									<Link
+										to={`/account?profile=${searchResults._id}`}
+										style={{ textDecoration: "none", color: "black" }}
+										onClick={() => {
+											query.set("profile", "");
+											setResultbar(false);
+											query.set("profile", searchResults._id);
+										}}
+									>
+										<div className='searchedUser__result'>
+											<Avatar
+												src={`https://linkedin-redesigned-server.herokuapp.com/images/${searchResults.profilePicture}`}
+											/>
+											<div className='searchResult__name'>
+												<h5>
+													{searchResults.firstName +
+														" " +
+														searchResults.lastName}
+												</h5>
+												<p>{searchResults.designation}</p>
+											</div>
+										</div>
+									</Link>
 								)}
 							</div>
 						) : null}

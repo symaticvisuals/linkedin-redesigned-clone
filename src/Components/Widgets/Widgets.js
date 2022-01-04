@@ -1,5 +1,6 @@
 import axios from "axios";
 import React, { useEffect } from "react";
+
 import { getApi } from "../../utils/apis";
 import Suggestions from "../Suggestions/Suggestions";
 
@@ -29,9 +30,8 @@ function Widgets() {
 		<div className='widgets'>
 			<h4 style={{ marginBottom: "10px" }}>People you might know</h4>
 			<div className='random__users'>
-				{suggestions.map((user, id) => (
-					<Suggestions user={user} id={id} />
-				))}
+				{suggestions &&
+					suggestions.map((user, id) => <Suggestions user={user} id={id} />)}
 			</div>
 		</div>
 	);

@@ -42,6 +42,7 @@ function Feed() {
 		if (count === 0) {
 			getAllPosts();
 			setCount(1);
+			console.log(posts);
 		}
 		const timer = setTimeout(() => {
 			getAllPosts();
