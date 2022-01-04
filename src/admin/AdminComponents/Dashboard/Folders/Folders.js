@@ -1,36 +1,45 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./Folders.css";
 
-import { FaUserCircle } from "react-icons/fa";
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import axios from "axios";
+import { getApi } from "../../../../utils/apis";
+import UserActivate from "../UserActivate/UserActivate";
 
 function Folders() {
-  const [active, isActive] = useState(true);
+  let [responseUsers, setResponseUsers] = useState([]);
+  const fetchData = (e) => {
+    let axiosConfig = {
+      withCredentials: true,
+    };
+
+    axios
+      .get(getApi("api/admin/allUsers?page=1&limit=4"), axiosConfig)
+      .then((res) => {
+        setResponseUsers(res.data.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
+  useEffect(() => {
+    fetchData();
+  }, []);
 
   return (
     <div className="Folders">
       <div className="users">
         <h2>Users</h2>
-        <Link to="/admin-users" className="blue">See all users</Link>
+        <Link to="/admin-users" className="blue">
+          See all users
+        </Link>
       </div>
       <div className="folder__cards">
-        <div className="folder__card">
-          <div className="folder__icons">
-            <FaUserCircle className="folder__icon blue" />
-            <button
-              active={active}
-              onClick={() => isActive(!active)}
-              className="activate__deactivate"
-            >
-              {active ? "Yes" : "No"}
-            </button>
-          </div>
-          <div className="folder__details">
-            <h4 className="blue">Name</h4>
-            <p>@username</p>
-          </div>
-        </div>
+        {responseUsers.map((res) => (
+          <UserActivate activated={res.isActive} details={{ res }} />
+        ))}
       </div>
     </div>
   );

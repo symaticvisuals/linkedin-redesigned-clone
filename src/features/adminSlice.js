@@ -9,7 +9,7 @@ export const adminSlice = createSlice({
     jwtToken: "",
   },
   reducers: {
-    login: (state, action) => {
+    adminLogin: (state, action) => {
       const newAdminLogin = {
         ...action.payload,
       };
@@ -18,7 +18,7 @@ export const adminSlice = createSlice({
       state.isLoggedIn = newAdminLogin.isLoggedIn;
       state.jwtToken = newAdminLogin.jwtToken;
     },
-    register: (state, action) => {
+    adminRegister: (state, action) => {
       const newAdmin = {
         ...action.payload,
       };
@@ -31,12 +31,12 @@ export const adminSlice = createSlice({
       state.userName = newAdmin.userName;
       state.id = newAdmin._id;
     },
-    logout: (state) => {
+    adminLogout: (state) => {
       state.isLoggedIn = false;
       state.jwtToken = "";
     },
   },
 });
-export const { login, logout, register, getAdmin } = adminSlice.actions;
+export const { adminLogin, adminLogout, adminRegister, getAdmin } = adminSlice.actions;
 
 export default adminSlice.reducer;

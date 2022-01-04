@@ -1,0 +1,10 @@
+.post__cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, 350px);
+  grid-auto-rows: 220px;
+  gap: 20px;
+}
+.post__card {
+  text-overflow: ellipsis;
+  height: 185px;
+}

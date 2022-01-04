@@ -16,7 +16,9 @@
 }
 .navigation__icon {
   padding: 0.5rem;
+  padding-bottom: 0.1rem;
   font-size: 2rem;
+  color: black;
 }
 .navigation__icon:hover {
   background-color: grey;
