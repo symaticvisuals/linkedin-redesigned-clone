@@ -46,7 +46,7 @@ function Feed() {
 		}
 		const timer = setTimeout(() => {
 			getAllPosts();
-		}, 60000);
+		}, 3000);
 		return () => clearTimeout(timer);
 	}, [posts, count]);
 
