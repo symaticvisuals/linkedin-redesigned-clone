@@ -69,6 +69,7 @@ function InputOption({ Icon, color, title, input, postTags }) {
 						name='image__form'
 						enctype='multipart/form-data'
 						method='post'
+						style={{ display: "flex", alignItems: "flex-end" }}
 						// onSubmit={afterSubmission}
 					>
 						<input
