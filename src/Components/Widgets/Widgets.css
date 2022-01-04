@@ -4,8 +4,8 @@
 	border-radius: 10px;
 	padding: 10px;
 
-	margin-right: 4vw;
-	height: auto;
+	/* margin-right: 4vw; */
+	/* min-height: 30vh; */
 }
 .widgets > h5 {
 	margin-bottom: 10px;

@@ -85,7 +85,6 @@ function Feed() {
 									filterSelectedOptions
 									onChange={(e, value) => {
 										setPostTags(value);
-										console.log(postTags);
 									}}
 									openOnFocus={true}
 									renderInput={(params) => (

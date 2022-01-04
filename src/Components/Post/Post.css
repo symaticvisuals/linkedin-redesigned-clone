@@ -16,6 +16,7 @@
 }
 .post__avatar {
 	border: 2px solid #1c8ebc;
+	object-fit: cover;
 }
 .post__contentSection {
 	min-height: 10vh;
