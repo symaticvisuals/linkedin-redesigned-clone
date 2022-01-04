@@ -6,7 +6,7 @@ import axios from "axios";
 import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import { getApi } from "../../utils/apis";
-import { login, register } from "../../features/adminSlice";
+import { adminLogin, adminRegister } from "../../features/adminSlice";
 
 function AdminSignup() {
   const [registerAdmin, setRegister] = useState({});
@@ -38,8 +38,8 @@ function AdminSignup() {
       .catch((err) => {
         console.log(err);
       });
-    dispatch(register(registerAdmin));
-    dispatch(login({ isLoggedIn: true }));
+    dispatch(adminRegister(registerAdmin));
+    dispatch(adminLogin({ isLoggedIn: true }));
   };
 
   return (

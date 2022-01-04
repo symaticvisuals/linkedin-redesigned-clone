@@ -1,9 +1,21 @@
 .files__container {
   background-color: #fff;
-  width: 350px;
+  /* height: 200px; */
+  /* width: 350px; */
   padding: 0.5rem;
   border-radius: 5px;
 }
 .files__container p {
   margin-top: -15px;
+}
+
+.activate__posts {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, 435px);
+  grid-auto-rows: 200px;
+  gap: 20px;
+}
+.activate__post {
+  /* margin-right: 10px; */
+  padding: 10px 30px !important;
 }

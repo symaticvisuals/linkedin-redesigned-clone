@@ -22,6 +22,55 @@
   margin-bottom: 10px;
 }
 
+.sidebar__buttons {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.single__line {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  background-color: #fff;
+}
+
+.half__width {
+  width: 50vw;
+  margin-top: 30px;
+}
+.half__width form {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+.half__width input {
+  width: 85%;
+  padding: 10px;
+  border: none;
+  box-shadow: 3px 3px 3px rgba(128, 128, 128, 0.199);
+  font-size: 18px;
+  outline: none;
+}
+.half__width button {
+  padding: 12px 30px;
+}
+
+.all__filters {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, 180px);
+  grid-auto-rows: 50px;
+  gap: 20px;
+}
+.single__filter {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #fff;
+  padding: 0 1rem;
+  height: 45px;
+  border-radius: 10px;
+}
+
 .progress {
   display: flex;
   flex-direction: column;
