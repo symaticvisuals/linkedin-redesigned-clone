@@ -24,7 +24,7 @@ function HeroPage() {
 						Linkedin Clone
 					</h1>
 					<h3>
-						Developed by <b>Deepanshu Goel</b>
+						Developed by <b>Deepanshu Goel & Pearl Arora</b>
 					</h3>
 					<div className='hero__buttons'>
 						<div className='hero__button'>
